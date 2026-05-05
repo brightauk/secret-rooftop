@@ -73,9 +73,7 @@ export default function Navbar() {
 
             {/* Book CTA */}
             <a
-              href="https://line.me/R/ti/p/@brightauk"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className={`hidden sm:inline-flex px-5 py-2 text-sm font-medium rounded-full transition-all ${
                 scrolled
                   ? "bg-charcoal text-white hover:bg-gray-900"
@@ -119,9 +117,8 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://line.me/R/ti/p/@brightauk"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
+              onClick={() => setMobileOpen(false)}
               className="block mt-3 text-center py-3 bg-charcoal text-white text-sm font-medium rounded-full"
             >
               {t(translations.nav.bookNow)}

@@ -98,9 +98,7 @@ export default function PricingSection() {
               </ul>
 
               <a
-                href="https://line.me/R/ti/p/@brightauk"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
                 className={`block w-full text-center py-3 rounded-full text-sm font-medium transition-all ${
                   pkg.highlight
                     ? "bg-white text-charcoal hover:bg-gray-100"

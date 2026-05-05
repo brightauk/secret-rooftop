@@ -18,9 +18,7 @@ export default function Footer() {
             {t(translations.footer.ctaDesc)}
           </p>
           <a
-            href="https://line.me/R/ti/p/@brightauk"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="inline-flex px-8 py-3.5 bg-white text-charcoal text-sm font-medium rounded-full hover:bg-gray-100 transition-colors"
           >
             {t(translations.footer.bookNow)}
@@ -35,7 +33,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Secret Rooftop Talad Noi
           </span>
           <div className="flex items-center gap-6">
-            <a href="https://line.me/R/ti/p/@brightauk" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white/60 text-xs transition-colors">
+            <a href="#contact" className="text-white/30 hover:text-white/60 text-xs transition-colors">
               LINE
             </a>
             <a href="https://fastwork.co/user/brightauk/studio-rental-10056485" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white/60 text-xs transition-colors">

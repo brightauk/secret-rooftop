@@ -48,9 +48,7 @@ export default function HeroSection() {
               {t(translations.hero.checkRates)}
             </a>
             <a
-              href="https://line.me/R/ti/p/@brightauk"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="px-8 py-3.5 border border-white/40 text-white text-sm font-medium rounded-full hover:bg-white/10 transition-colors"
             >
               {t(translations.hero.bookLine)}

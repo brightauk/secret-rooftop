@@ -68,10 +68,18 @@ export default function ContactFAQSection() {
               <p className="text-gray-400 text-sm font-light">{t(translations.contact.quickReply)}</p>
             </div>
 
-            {/* QR Code */}
-            <div className="mt-5 flex flex-col items-center p-6 rounded-xl bg-white border border-gray-100">
-              <img src="/images/line-qr.png" alt="LINE QR Code" className="w-36 h-auto rounded-lg" />
-              <p className="mt-3 text-gray-400 text-xs font-light">แสกนเพื่อเพิ่ม LINE</p>
+            {/* LINE QR — smooth integrated card */}
+            <div className="mt-5 p-6 rounded-2xl bg-[#06C755]/5 border border-[#06C755]/20">
+              <div className="flex items-center gap-5">
+                <div className="flex-shrink-0 w-32 h-32 rounded-xl overflow-hidden bg-white p-2 shadow-sm">
+                  <img src="/images/line-qr.png" alt="LINE QR Code" className="w-full h-full object-contain rounded-lg" />
+                </div>
+                <div>
+                  <p className="text-charcoal font-medium text-sm">จองผ่าน LINE</p>
+                  <p className="text-gray-400 text-xs font-light mt-1">แสกน QR Code เพื่อเพิ่มเพื่อน<br/>และส่งข้อความจองได้เลย</p>
+                  <p className="text-gray-300 text-[11px] font-light mt-2">💬 ตอบกลับเร็วภายใน 30 นาที</p>
+                </div>
+              </div>
             </div>
           </div>
 
