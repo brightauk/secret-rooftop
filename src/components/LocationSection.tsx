@@ -5,7 +5,7 @@ import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
 
 const parkingSpots = [
-  { name: "River City Bangkok", distance: "~10 min walk", mapsUrl: "https://maps.app.goo.gl/JqGkBYBW8CmfqpXV9" },
+  { name: "River City Bangkok", distance: "~10 min walk", mapsUrl: "https://maps.google.com/?q=River+City+Bangkok" },
   { name: "Expressway Parking", distance: "~5 min walk", mapsUrl: "https://maps.google.com/?q=13.7385,100.5117" },
   { name: "Charoen Krung Road", distance: "Nearest", mapsUrl: "https://maps.google.com/?q=13.738,100.512" },
 ];
