@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Prompt } from "next/font/google";
+import { Prompt, Playfair_Display } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
@@ -7,6 +7,13 @@ const prompt = Prompt({
   variable: "--font-prompt",
   subsets: ["latin", "thai"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -112,7 +119,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="th" className={`${prompt.variable} h-full antialiased`}>
+    <html lang="th" className={`${prompt.variable} ${playfair.variable} h-full antialiased`}>
       <head>
         <script
           type="application/ld+json"
