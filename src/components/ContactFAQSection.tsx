@@ -75,9 +75,9 @@ export default function ContactFAQSection() {
                   <img src="/images/line-qr.png" alt="LINE QR Code" className="w-full h-full object-contain rounded-lg" />
                 </div>
                 <div>
-                  <p className="text-charcoal font-medium text-sm">จองผ่าน LINE</p>
-                  <p className="text-gray-400 text-xs font-light mt-1">แสกน QR Code เพื่อเพิ่มเพื่อน<br/>และส่งข้อความจองได้เลย</p>
-                  <p className="text-gray-300 text-[11px] font-light mt-2">💬 ตอบกลับเร็วภายใน 30 นาที</p>
+                  <p className="text-charcoal font-medium text-sm">{t({ th: "จองผ่าน LINE", en: "Book via LINE" })}</p>
+                  <p className="text-gray-400 text-xs font-light mt-1">{t({ th: "แสกน QR Code เพื่อเพิ่มเพื่อน และส่งข้อความจองได้เลย", en: "Scan QR Code to add friend and send a booking message" })}</p>
+                  <p className="text-gray-300 text-[11px] font-light mt-2">{t({ th: "💬 ตอบกลับเร็วภายใน 30 นาที", en: "💬 Quick reply within 30 minutes" })}</p>
                 </div>
               </div>
             </div>
