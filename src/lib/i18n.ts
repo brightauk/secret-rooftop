@@ -148,6 +148,30 @@ export const translations = {
         { th: "สอบถามรายละเอียดเพิ่มเติมได้", en: "Contact us for details" },
       ],
     },
+    hourlyShoot: {
+      name: { th: "ถ่ายเล่น", en: "Casual Shoot" },
+      duration: { th: "รายชั่วโมง", en: "Per Hour" },
+      desc: {
+        th: "สำหรับ 2-3 คน ถ่ายเล่น ถ่ายคอนเทนต์ หรือมาชิลล์ริลแซกซ์",
+        en: "For 2-3 people — casual shoot, content creation, or chill & relax.",
+      },
+      features: [
+        { th: "2-3 คน", en: "2-3 people" },
+        { th: "ยืดหยุ่นตามชั่วโมง", en: "Flexible per hour" },
+      ],
+    },
+    hourlyProduction: {
+      name: { th: "Full Production", en: "Full Production" },
+      duration: { th: "รายชั่วโมง", en: "Per Hour" },
+      desc: {
+        th: "สำหรับทีม 3 คนขึ้นไป ถ่าย MV ถ่ายพรีเวดดิ้ง หรือโปรเจกต์มืออาชีพ",
+        en: "For teams of 3+ — MV shooting, pre-wedding, or professional projects.",
+      },
+      features: [
+        { th: "3 คนขึ้นไป", en: "3+ people" },
+        { th: "ยืดหยุ่นตามชั่วโมง", en: "Flexible per hour" },
+      ],
+    },
   },
   // Location
   location: {
@@ -177,8 +201,8 @@ export const translations = {
     },
     bookNow: { th: "จองเลย", en: "Book Now" },
     quickReply: {
-      th: "💬 ตอบกลับเร็ว! ภายใน 30 นาทีในเวลาทำการ (9:00 - 21:00)",
-      en: "💬 Quick response guaranteed! Within 30 minutes during business hours (9:00 - 21:00).",
+      th: "💬 ตอบกลับเร็ว! ภายใน 30 นาทีในเวลาทำการ",
+      en: "💬 Quick response guaranteed! Within 30 minutes during business hours.",
     },
     faqTitle: { th: "คำถามที่พบบ่อย", en: "Frequently Asked Questions" },
     faqs: [

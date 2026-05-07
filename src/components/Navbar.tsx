@@ -59,16 +59,21 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            {/* Language toggle */}
+            {/* Language toggle with flags */}
             <button
               onClick={() => setLocale(locale === "th" ? "en" : "th")}
-              className={`w-8 h-8 rounded-full text-xs font-medium transition-all flex items-center justify-center ${
+              className={`relative h-8 px-3 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 ${
                 scrolled
-                  ? "text-gray-500 hover:text-charcoal border border-gray-200"
-                  : "text-white/70 hover:text-white border border-white/20"
+                  ? "text-gray-600 hover:text-charcoal border border-gray-200 bg-white"
+                  : "text-white/80 hover:text-white border border-white/20 bg-white/10"
               }`}
+              title={locale === "th" ? "Switch to English" : "เปลี่ยนเป็นภาษาไทย"}
             >
-              {locale === "th" ? "EN" : "TH"}
+              <span className="text-sm">{locale === "th" ? "🇹🇭" : "🇬🇧"}</span>
+              <span>{locale === "th" ? "TH" : "EN"}</span>
+              <svg className="w-3 h-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
 
             {/* Book CTA */}

@@ -45,19 +45,24 @@ export default function LocationSection() {
           <div className={`rounded-2xl overflow-hidden border border-gray-100 transition-all duration-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}>
-            <iframe
-              src="https://maps.google.com/maps?q=Secret+Rooftop+Talad+Noi&t=&z=17&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="360"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full"
-              title="Secret Rooftop Location"
-            />
-            <div className="p-4 bg-white">
-              <a href="https://maps.app.goo.gl/mrAeDAYrVjZdUHzM9" target="_blank" rel="noopener noreferrer" className="text-sm text-terra hover:text-terra-dark transition-colors font-medium">
+            <div className="relative">
+              <iframe
+                src="https://maps.google.com/maps?q=Secret+Rooftop+Talad+Noi&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="360"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full"
+                title="Secret Rooftop Location"
+              />
+              <a
+                href="https://maps.app.goo.gl/mrAeDAYrVjZdUHzM9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-3 right-3 px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-lg text-xs text-terra hover:text-terra-dark transition-colors font-medium shadow-sm border border-gray-100"
+              >
                 {t(translations.location.openMaps)}
               </a>
             </div>

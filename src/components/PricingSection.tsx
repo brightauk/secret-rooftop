@@ -10,6 +10,11 @@ const packages = [
   { ...translations.pricing.event, price: null, highlight: false, ctaKey: "getQuote" as const },
 ];
 
+const hourlyPackages = [
+  { ...translations.pricing.hourlyShoot, price: "1,500", highlight: false, ctaKey: "bookLine" as const },
+  { ...translations.pricing.hourlyProduction, price: "2,000", highlight: false, ctaKey: "bookLine" as const },
+];
+
 export default function PricingSection() {
   const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
@@ -40,7 +45,7 @@ export default function PricingSection() {
           </p>
         </div>
 
-        {/* Cards */}
+        {/* Main packages */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {packages.map((pkg, index) => (
             <div
@@ -120,6 +125,66 @@ export default function PricingSection() {
               </a>
             </div>
           ))}
+        </div>
+
+        {/* Hourly packages */}
+        <div className="mt-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px flex-1 bg-gray-200" />
+            <span className="text-xs tracking-[0.15em] uppercase text-gray-400 font-medium">
+              {t({ th: "รายชั่วโมง", en: "Hourly Rate" })}
+            </span>
+            <div className="h-px flex-1 bg-gray-200" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+            {hourlyPackages.map((pkg, index) => (
+              <div
+                key={index}
+                className={`rounded-2xl p-6 bg-white border border-gray-100 transition-all duration-500 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+                style={{ transitionDelay: isVisible ? `${(index + 3) * 100}ms` : "0ms" }}
+              >
+                <div className="text-center mb-4">
+                  <h3 className="text-base font-semibold text-charcoal mb-1">
+                    {t(pkg.name)}
+                  </h3>
+                  <span className="text-xs text-gray-400">{t(pkg.duration)}</span>
+                </div>
+
+                <div className="text-center mb-4">
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="text-3xl font-bold text-charcoal">{pkg.price}</span>
+                    <span className="text-sm text-gray-400">
+                      {t({ th: "THB/ชม.", en: "THB/hr" })}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-sm text-center mb-4 leading-relaxed font-light text-gray-400">
+                  {t(pkg.desc)}
+                </p>
+
+                <ul className="space-y-2 mb-6">
+                  {pkg.features.map((feat, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-gray-500">
+                      <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-terra" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {t(feat)}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="#contact"
+                  className="block w-full text-center py-2.5 rounded-full text-sm font-medium bg-charcoal text-white hover:bg-gray-800 transition-all"
+                >
+                  {t(translations.pricing[pkg.ctaKey])}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
 
         <p className="text-center mt-10 text-gray-300 text-xs font-light">
