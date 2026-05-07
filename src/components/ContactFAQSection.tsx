@@ -41,24 +41,31 @@ export default function ContactFAQSection() {
           <div className={`transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <h3 className="text-base font-semibold text-charcoal mb-5">{t(translations.contact.bookNow)}</h3>
 
-            <div className="space-y-3">
-              {/* LINE */}
-              <a href="https://line.me/ti/p/~" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-[#06C755]/5 border border-[#06C755]/20 hover:border-[#06C755]/40 transition-all group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#06C755] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.627-.285-.627-.629V8.108c0-.27.174-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
-                  </svg>
+            <div className="space-y-4">
+              {/* LINE QR — Main CTA */}
+              <div className="p-5 rounded-2xl bg-white border border-[#06C755]/15">
+                <div className="flex flex-col sm:flex-row items-center gap-5">
+                  <div className="flex-shrink-0 w-36 h-36 rounded-xl overflow-hidden bg-white p-2 border border-gray-100">
+                    <img src="/images/line-qr.png" alt="LINE QR Code" className="w-full h-full object-contain" />
+                  </div>
+                  <div className="text-center sm:text-left">
+                    <div className="flex items-center justify-center sm:justify-start gap-2 mb-2">
+                      <div className="w-6 h-6 rounded-md bg-[#06C755] flex items-center justify-center">
+                        <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.627-.285-.627-.629V8.108c0-.27.174-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.349 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                        </svg>
+                      </div>
+                      <span className="font-semibold text-charcoal text-sm">LINE</span>
+                    </div>
+                    <p className="text-gray-400 text-xs font-light leading-relaxed">
+                      {t({ th: "แสกน QR เพื่อเพิ่มเพื่อน → ส่งข้อความจองได้เลย", en: "Scan QR to add friend → Send a booking message" })}
+                    </p>
+                    <p className="text-[11px] text-gray-300 font-light mt-1.5">
+                      {t({ th: "💬 ตอบกลับเร็วภายใน 30 นาที", en: "💬 Quick reply within 30 minutes" })}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <div className="font-medium text-sm text-charcoal">LINE</div>
-                  <div className="text-xs text-gray-400 font-light">{t({ th: "แสกน QR ด้านล่าง หรือกดเพิ่มเพื่อน", en: "Scan QR below or tap to add friend" })}</div>
-                </div>
-                <svg className="w-4 h-4 text-gray-300 group-hover:text-[#06C755] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
+              </div>
 
               {/* Fastwork */}
               <a href="https://fastwork.co/user/brightauk/studio-rental-10056485" target="_blank" rel="noopener noreferrer"
@@ -75,24 +82,6 @@ export default function ContactFAQSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
-            </div>
-
-            <div className="mt-5 p-4 rounded-xl bg-white border border-gray-100">
-              <p className="text-gray-400 text-sm font-light">{t(translations.contact.quickReply)}</p>
-            </div>
-
-            {/* LINE QR — smooth integrated card */}
-            <div className="mt-5 p-6 rounded-2xl bg-[#06C755]/5 border border-[#06C755]/20">
-              <div className="flex items-center gap-5">
-                <div className="flex-shrink-0 w-32 h-32 rounded-xl overflow-hidden bg-white p-2 shadow-sm">
-                  <img src="/images/line-qr.png" alt="LINE QR Code" className="w-full h-full object-contain rounded-lg" />
-                </div>
-                <div>
-                  <p className="text-charcoal font-medium text-sm">{t({ th: "จองผ่าน LINE", en: "Book via LINE" })}</p>
-                  <p className="text-gray-400 text-xs font-light mt-1">{t({ th: "แสกน QR Code เพื่อเพิ่มเพื่อน และส่งข้อความจองได้เลย", en: "Scan QR Code to add friend and send a booking message" })}</p>
-                  <p className="text-gray-300 text-[11px] font-light mt-2">{t({ th: "💬 ตอบกลับเร็วภายใน 30 นาที", en: "💬 Quick reply within 30 minutes" })}</p>
-                </div>
-              </div>
             </div>
           </div>
 

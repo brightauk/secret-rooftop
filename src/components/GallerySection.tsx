@@ -110,37 +110,48 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Featured grid — first image large, rest small (Airbnb style) */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-          {displayed.map((img, index) => {
-            // First image spans 2 cols + 2 rows on sm+
-            const isHero = index === 0 && !expanded;
-            return (
-              <div
-                key={img.src}
-                className={`relative cursor-pointer group overflow-hidden rounded-xl ${
-                  isHero ? "col-span-2 row-span-2 aspect-square sm:aspect-auto" : "aspect-square"
-                } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-                style={{
-                  transitionProperty: "opacity, transform",
-                  transitionDuration: "400ms",
-                  transitionDelay: isVisible ? `${Math.min(index * 40, 300)}ms` : "0ms",
-                }}
-                onClick={() => openLightbox(index)}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes={isHero ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 50vw, 25vw"}
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
-              </div>
-            );
-          })}
+        {/* Featured grid — 5 images + view more button */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+          {/* First image — spans 2 cols */}
+          <div
+            className={`col-span-2 row-span-2 relative cursor-pointer group overflow-hidden rounded-xl aspect-[4/3] ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionProperty: "opacity, transform", transitionDuration: "400ms", transitionDelay: "0ms" }}
+            onClick={() => openLightbox(0)}
+          >
+            <Image
+              src={displayed[0].src}
+              alt={displayed[0].alt}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, 66vw"
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
+          </div>
 
-          {/* Show more overlay on the 6th image */}
+          {/* Remaining images */}
+          {displayed.slice(1, expanded ? undefined : PREVIEW_COUNT - 1).map((img, index) => (
+            <div
+              key={img.src}
+              className={`relative cursor-pointer group overflow-hidden rounded-xl aspect-square ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionProperty: "opacity, transform", transitionDuration: "400ms", transitionDelay: `${Math.min((index + 1) * 50, 300)}ms` }}
+              onClick={() => openLightbox(index + 1)}
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 50vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
+            </div>
+          ))}
+
+          {/* Show more overlay */}
           {hasMore && !expanded && (
             <div
               className="relative aspect-square cursor-pointer group overflow-hidden rounded-xl bg-charcoal/80 flex items-center justify-center"
