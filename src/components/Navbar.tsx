@@ -8,11 +8,32 @@ export default function Navbar() {
   const { locale, setLocale, t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = ["highlights", "gallery", "pricing", "location", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -60% 0px" }
+    );
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
   }, []);
 
   const navItems = [
@@ -42,19 +63,29 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-6">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`text-sm transition-colors ${
-                  scrolled
-                    ? "text-gray-500 hover:text-charcoal"
-                    : "text-white/70 hover:text-white"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1);
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`text-sm transition-colors relative ${
+                    isActive
+                      ? scrolled
+                        ? "text-charcoal font-medium"
+                        : "text-white font-medium"
+                      : scrolled
+                        ? "text-gray-500 hover:text-charcoal"
+                        : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${scrolled ? "bg-terra" : "bg-white"}`} />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           {/* Right side */}
@@ -125,16 +156,21 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100">
           <div className="px-6 py-4 space-y-1">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="block py-3 text-sm text-gray-600 hover:text-charcoal transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1);
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block py-3 text-sm transition-colors ${
+                    isActive ? "text-charcoal font-medium" : "text-gray-600 hover:text-charcoal"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
             <a
               href="#contact"
               onClick={() => setMobileOpen(false)}
