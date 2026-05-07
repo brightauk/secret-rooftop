@@ -71,8 +71,8 @@ export default function ContactFAQSection() {
               <a href="https://fastwork.co/user/brightauk/studio-rental-10056485" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-xl bg-[#4C1D95]/5 border border-[#4C1D95]/15 hover:border-[#4C1D95]/30 transition-all group"
               >
-                <div className="w-10 h-10 rounded-[22%] bg-[#1e6ce2] flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <img src="/images/fastwork-logo.svg" alt="Fastwork" className="w-7 h-7 object-contain brightness-0 invert" />
+                <div className="w-10 h-10 rounded-[22%] overflow-hidden flex-shrink-0 shadow-sm">
+                  <img src="/images/fastwork-logo.jpg" alt="Fastwork" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1">
                   <div className="font-medium text-sm text-charcoal">Fastwork</div>
