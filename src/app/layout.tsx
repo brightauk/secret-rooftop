@@ -64,12 +64,6 @@ export default function RootLayout({
       latitude: 13.7385,
       longitude: 100.5117,
     },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      opens: "09:00",
-      closes: "21:00",
-    },
     priceRange: "฿฿",
     image: "https://secret-rooftop-site.vercel.app/images/hero/hero.jpg",
     sameAs: ["https://fastwork.co/user/brightauk/studio-rental-10056485"],
