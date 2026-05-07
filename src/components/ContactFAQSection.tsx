@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
+import { events } from "../lib/analytics";
 
 
 export default function ContactFAQSection() {
@@ -45,7 +46,7 @@ export default function ContactFAQSection() {
               {/* LINE QR — Main CTA */}
               <div className="p-5 rounded-2xl bg-white border border-[#06C755]/15">
                 <div className="flex flex-col sm:flex-row items-center gap-5">
-                  <div className="flex-shrink-0 w-36 h-36 rounded-xl overflow-hidden bg-white p-2 border border-gray-100">
+                  <div className="flex-shrink-0 w-36 h-36 rounded-xl overflow-hidden bg-white p-2 border border-gray-100" onClick={() => events.lineQrScanned()}>
                     <img src="/images/line-qr.png" alt="LINE QR Code" className="w-full h-full object-contain" />
                   </div>
                   <div className="text-center sm:text-left">
@@ -70,6 +71,7 @@ export default function ContactFAQSection() {
               {/* Fastwork */}
               <a href="https://fastwork.co/user/brightauk/studio-rental-10056485" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-xl bg-[#4C1D95]/5 border border-[#4C1D95]/15 hover:border-[#4C1D95]/30 transition-all group"
+                onClick={() => events.fastworkClicked()}
               >
                 <div className="w-10 h-10 rounded-[22%] overflow-hidden flex-shrink-0 shadow-sm">
                   <img src="/images/fastwork-logo.jpg" alt="Fastwork" className="w-full h-full object-cover" />

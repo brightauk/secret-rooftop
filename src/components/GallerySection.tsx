@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
+import { events } from "../lib/analytics";
 
 type Category = "all" | "day" | "night" | "office";
 
@@ -63,6 +64,7 @@ export default function GallerySection() {
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightbox(filtered[index].src);
+    events.galleryLightbox();
   };
 
   const nextImage = () => {
@@ -98,7 +100,7 @@ export default function GallerySection() {
           {categories.map((cat) => (
             <button
               key={cat.key}
-              onClick={() => { setActive(cat.key); setExpanded(false); }}
+              onClick={() => { setActive(cat.key); setExpanded(false); events.galleryFilter(cat.key); }}
               className={`px-5 py-2 rounded-full text-sm transition-all ${
                 active === cat.key
                   ? "bg-charcoal text-white"

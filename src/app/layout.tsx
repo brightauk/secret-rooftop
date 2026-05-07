@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -119,6 +120,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-white text-charcoal font-sans">{children}</body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
     </html>
   );
 }

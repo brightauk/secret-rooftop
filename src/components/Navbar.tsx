@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
+import { events } from "../lib/analytics";
 
 export default function Navbar() {
   const { locale, setLocale, t } = useLocale();
@@ -124,6 +125,7 @@ export default function Navbar() {
             {/* Book CTA */}
             <a
               href="#contact"
+              onClick={() => events.bookNowClicked("navbar")}
               className={`hidden sm:inline-flex px-5 py-2 text-sm font-medium rounded-full transition-all ${
                 scrolled
                   ? "bg-charcoal text-white hover:bg-gray-900"
