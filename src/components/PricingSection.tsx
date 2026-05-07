@@ -49,7 +49,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
       )}
 
       <div className="text-center mb-6 pt-2">
-        <h3 className={`text-xl font-semibold mb-1 font-serif ${pkg.highlight ? "text-white" : "text-charcoal"}`}>
+        <h3 className={`text-xl font-semibold mb-1 ${pkg.highlight ? "text-white" : "text-charcoal"}`}>
           {t(pkg.name)}
         </h3>
         <span className={`text-sm ${pkg.highlight ? "text-white/40" : "text-gray-400"}`}>
@@ -60,7 +60,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
       <div className="text-center mb-6">
         {pkg.price ? (
           <div className="flex items-baseline justify-center gap-1.5">
-            <span className={`text-5xl font-bold font-serif ${pkg.highlight ? "text-gradient-terra" : "text-charcoal"}`}>
+            <span className={`text-5xl font-bold ${pkg.highlight ? "text-gradient-terra" : "text-charcoal"}`}>
               {pkg.price}
             </span>
             <span className={`text-base ${pkg.highlight ? "text-white/40" : "text-gray-400"}`}>
@@ -68,7 +68,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
             </span>
           </div>
         ) : (
-          <span className={`text-3xl font-semibold font-serif ${pkg.highlight ? "text-gradient-terra" : "text-terra"}`}>
+          <span className={`text-3xl font-semibold ${pkg.highlight ? "text-gradient-terra" : "text-terra"}`}>
             {t(translations.pricing.getQuote)}
           </span>
         )}
@@ -168,7 +168,7 @@ export default function PricingSection() {
           <p className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
             {t(translations.pricing.tag)}
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-charcoal mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-4 tracking-tight">
             {t(translations.pricing.title)}
           </h2>
           <div className="section-divider mb-4" />

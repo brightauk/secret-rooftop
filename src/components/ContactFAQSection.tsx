@@ -29,7 +29,7 @@ export default function ContactFAQSection() {
           <p className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
             {t(translations.contact.tag)}
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-charcoal mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-4 tracking-tight">
             {t(translations.contact.title)}
           </h2>
           <div className="section-divider mb-4" />
@@ -42,7 +42,7 @@ export default function ContactFAQSection() {
           {/* Contact */}
           <div className={`transition-all duration-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}>
-            <h3 className="text-base font-semibold text-charcoal mb-6 font-serif">{t(translations.contact.bookNow)}</h3>
+            <h3 className="text-base font-semibold text-charcoal mb-6">{t(translations.contact.bookNow)}</h3>
 
             <div className="space-y-4">
               {/* LINE — Primary CTA */}
@@ -98,7 +98,7 @@ export default function ContactFAQSection() {
           {/* FAQ */}
           <div className={`transition-all duration-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)", transitionDelay: "100ms" }}>
-            <h3 className="text-base font-semibold text-charcoal mb-6 font-serif">{t(translations.contact.faqTitle)}</h3>
+            <h3 className="text-base font-semibold text-charcoal mb-6">{t(translations.contact.faqTitle)}</h3>
             <div className="space-y-3">
               {translations.contact.faqs.map((faq, index) => (
                 <div key={index} className="rounded-2xl border border-gray-100 overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-all duration-300">

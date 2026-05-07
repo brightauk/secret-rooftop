@@ -87,7 +87,7 @@ export default function GallerySection() {
           <p className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
             {t(translations.gallery.tag)}
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-charcoal mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-4 tracking-tight">
             {t(translations.gallery.title)}
           </h2>
           <div className="section-divider mb-4" />
@@ -151,7 +151,7 @@ export default function GallerySection() {
               onClick={() => setExpanded(true)}
             >
               <div className="text-center text-white">
-                <span className="text-4xl font-serif font-light group-hover:scale-110 inline-block transition-transform">+{filtered.length - PREVIEW_COUNT}</span>
+                <span className="text-4xl font-light group-hover:scale-110 inline-block transition-transform">+{filtered.length - PREVIEW_COUNT}</span>
                 <p className="text-xs mt-2 text-white/50 font-light tracking-wide">
                   {t({ th: "ดูทั้งหมด", en: "View all" })}
                 </p>

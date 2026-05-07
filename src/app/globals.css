@@ -49,7 +49,6 @@
   --color-green: var(--green);
   --color-slate-900: var(--slate-900);
   --font-sans: var(--font-prompt);
-  --font-serif: var(--font-playfair);
 }
 
 * {

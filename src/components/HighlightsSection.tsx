@@ -28,7 +28,7 @@ export default function HighlightsSection() {
           <p className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
             {t(translations.highlights.tag)}
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-charcoal mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-4 tracking-tight">
             {t(translations.highlights.title)}
           </h2>
           <div className="section-divider mb-4" />
@@ -55,7 +55,7 @@ export default function HighlightsSection() {
               <span className="text-3xl mb-5 block group-hover:scale-110 inline-block transition-transform duration-300">
                 {item.icon}
               </span>
-              <h3 className="text-base font-semibold text-charcoal mb-2.5 font-serif">
+              <h3 className="text-base font-semibold text-charcoal mb-2.5">
                 {t(item.title)}
               </h3>
               <p className="text-sm text-gray-400 leading-relaxed font-light">

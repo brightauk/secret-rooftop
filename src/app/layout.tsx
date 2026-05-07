@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Prompt, Playfair_Display } from "next/font/google";
+import { Prompt } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
@@ -10,12 +10,6 @@ const prompt = Prompt({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://secret-rooftop-site.vercel.app"),
@@ -119,7 +113,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="th" className={`${prompt.variable} ${playfair.variable} h-full antialiased`}>
+    <html lang="th" className={`${prompt.variable} h-full antialiased`}>
       <head>
         <script
           type="application/ld+json"
