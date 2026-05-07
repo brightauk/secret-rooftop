@@ -59,21 +59,33 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            {/* Language toggle with flags */}
+            {/* Language toggle switch */}
             <button
               onClick={() => setLocale(locale === "th" ? "en" : "th")}
-              className={`relative h-8 px-3 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 ${
+              className={`relative h-8 w-[72px] rounded-full transition-all duration-300 flex items-center ${
                 scrolled
-                  ? "text-gray-600 hover:text-charcoal border border-gray-200 bg-white"
-                  : "text-white/80 hover:text-white border border-white/20 bg-white/10"
+                  ? "bg-gray-100"
+                  : "bg-white/15"
               }`}
               title={locale === "th" ? "Switch to English" : "เปลี่ยนเป็นภาษาไทย"}
             >
-              <span className="text-sm">{locale === "th" ? "🇹🇭" : "🇬🇧"}</span>
-              <span>{locale === "th" ? "TH" : "EN"}</span>
-              <svg className="w-3 h-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              {/* Slide indicator */}
+              <span
+                className={`absolute top-1 w-[30px] h-[24px] rounded-full transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                  scrolled ? "bg-white shadow-sm" : "bg-white/90 shadow-sm"
+                } ${locale === "th" ? "left-1" : "left-[37px]"}`}
+              />
+              {/* Labels */}
+              <span className={`relative z-10 w-1/2 text-center text-[11px] font-semibold transition-colors duration-300 ${
+                locale === "th"
+                  ? (scrolled ? "text-charcoal" : "text-charcoal")
+                  : (scrolled ? "text-gray-400" : "text-white/40")
+              }`}>TH</span>
+              <span className={`relative z-10 w-1/2 text-center text-[11px] font-semibold transition-colors duration-300 ${
+                locale === "en"
+                  ? (scrolled ? "text-charcoal" : "text-charcoal")
+                  : (scrolled ? "text-gray-400" : "text-white/40")
+              }`}>EN</span>
             </button>
 
             {/* Book CTA */}

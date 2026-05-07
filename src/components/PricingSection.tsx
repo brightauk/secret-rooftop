@@ -16,30 +16,31 @@ interface Package {
   priceSuffix?: { th: string; en: string } | null;
 }
 
+// Sorted: cheapest → most expensive
 const allPackages: Package[] = [
-  { ...translations.pricing.halfDay, price: "5,000", highlight: false, ctaKey: "bookLine", priceSuffix: null },
-  { ...translations.pricing.fullDay, price: "8,000", highlight: true, ctaKey: "bookLine", badge: translations.pricing.popular, priceSuffix: null },
-  { ...translations.pricing.event, price: null, highlight: false, ctaKey: "getQuote", priceSuffix: null },
   { ...translations.pricing.hourlyShoot, price: "1,500", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
   { ...translations.pricing.hourlyProduction, price: "2,000", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
+  { ...translations.pricing.halfDay, price: "5,000", highlight: false, ctaKey: "bookLine" },
+  { ...translations.pricing.fullDay, price: "8,000", highlight: true, ctaKey: "bookLine", badge: translations.pricing.popular },
+  { ...translations.pricing.event, price: null, highlight: false, ctaKey: "getQuote" },
 ];
 
 function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string; en: string }) => string; isActive: boolean }) {
   return (
     <div
-      className={`relative rounded-3xl p-8 sm:p-10 transition-all duration-500 h-full flex flex-col ${
+      className={`relative rounded-3xl p-8 sm:p-10 transition-all duration-700 ease-out h-full flex flex-col ${
         pkg.highlight
           ? "bg-charcoal text-white shadow-soft-lg"
           : "bg-white border border-gray-100"
-      } ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-60"}`}
+      } ${isActive ? "scale-100 opacity-100" : "scale-[0.92] opacity-50"}`}
     >
       {pkg.badge && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-terra text-white text-[10px] font-semibold tracking-wider uppercase rounded-full whitespace-nowrap">
+        <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-terra text-white text-[10px] font-semibold tracking-wider uppercase rounded-full whitespace-nowrap shadow-sm">
           {t(pkg.badge)}
         </span>
       )}
 
-      <div className="text-center mb-6">
+      <div className="text-center mb-6 pt-2">
         <h3 className={`text-xl font-semibold mb-1 ${pkg.highlight ? "text-white" : "text-charcoal"}`}>
           {t(pkg.name)}
         </h3>
@@ -109,7 +110,7 @@ export default function PricingSection() {
   const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(2); // start at half-day (middle)
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const isDragging = useRef(false);
@@ -165,34 +166,34 @@ export default function PricingSection() {
 
         {/* Carousel */}
         <div
-          className={`relative transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          className={`relative transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Desktop: side-by-side peek carousel */}
+          {/* Desktop: center peek carousel */}
           <div className="hidden md:block relative">
             <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-4xl">
+              <div className="relative w-full max-w-5xl">
                 {/* Cards container */}
-                <div className="relative h-[520px]">
+                <div className="relative h-[540px]">
                   {allPackages.map((pkg, index) => {
                     const offset = index - activeIndex;
                     const isCenter = offset === 0;
-                    const translateX = offset * 320;
+                    const translateX = offset * 340;
                     const zIndex = 10 - Math.abs(offset);
 
                     return (
                       <div
                         key={index}
-                        className="absolute top-0 left-1/2 w-[300px] transition-all duration-500 ease-out"
+                        className="absolute top-0 left-1/2 w-[320px] cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
                         style={{
-                          transform: `translateX(${translateX - 150}px)`,
+                          transform: `translateX(${translateX - 160}px)`,
                           zIndex,
                           opacity: Math.abs(offset) > 2 ? 0 : 1,
-                          pointerEvents: isCenter ? "auto" : "none",
+                          pointerEvents: Math.abs(offset) <= 2 ? "auto" : "none",
                         }}
-                        onClick={() => !isCenter && goTo(index)}
+                        onClick={() => goTo(index)}
                       >
                         <PackageCard pkg={pkg} t={t} isActive={isCenter} />
                       </div>
@@ -200,24 +201,24 @@ export default function PricingSection() {
                   })}
                 </div>
 
-                {/* Nav arrows */}
+                {/* Nav arrows — bigger and more visible */}
                 <button
                   onClick={() => goTo(activeIndex - 1)}
-                  className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-soft flex items-center justify-center transition-all z-20 ${
-                    activeIndex === 0 ? "opacity-30 pointer-events-none" : "hover:border-gray-200 hover:shadow-soft-lg"
+                  className={`absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center transition-all duration-300 z-20 hover:bg-white hover:shadow-lg hover:scale-110 ${
+                    activeIndex === 0 ? "opacity-0 pointer-events-none" : ""
                   }`}
                 >
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
                 <button
                   onClick={() => goTo(activeIndex + 1)}
-                  className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-soft flex items-center justify-center transition-all z-20 ${
-                    activeIndex === allPackages.length - 1 ? "opacity-30 pointer-events-none" : "hover:border-gray-200 hover:shadow-soft-lg"
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center transition-all duration-300 z-20 hover:bg-white hover:shadow-lg hover:scale-110 ${
+                    activeIndex === allPackages.length - 1 ? "opacity-0 pointer-events-none" : ""
                   }`}
                 >
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -229,7 +230,7 @@ export default function PricingSection() {
           <div className="md:hidden">
             <div className="relative overflow-hidden">
               <div
-                className="flex transition-transform duration-500 ease-out"
+                className="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
                 style={{ transform: `translateX(-${activeIndex * 100}%)` }}
               >
                 {allPackages.map((pkg, index) => (
@@ -241,20 +242,26 @@ export default function PricingSection() {
             </div>
           </div>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {allPackages.map((_, index) => (
+          {/* Dots indicator */}
+          <div className="flex justify-center items-center gap-2 mt-10">
+            {allPackages.map((pkg, index) => (
               <button
                 key={index}
                 onClick={() => goTo(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`transition-all duration-500 rounded-full ${
                   index === activeIndex
-                    ? "bg-terra w-6"
-                    : "bg-gray-300 hover:bg-gray-400"
+                    ? "bg-terra w-8 h-3"
+                    : "bg-gray-200 w-3 h-3 hover:bg-gray-300"
                 }`}
+                title={t(pkg.name)}
               />
             ))}
           </div>
+
+          {/* Package name preview */}
+          <p className="text-center mt-3 text-sm text-gray-400 font-light transition-all duration-500">
+            {t(allPackages[activeIndex].name)} · {t(allPackages[activeIndex].duration)}
+          </p>
         </div>
 
         <p className="text-center mt-10 text-gray-300 text-xs font-light">
