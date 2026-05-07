@@ -43,8 +43,46 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Secret Rooftop Talad Noi",
+    alternateName: "ดาดฟ้าลับ ตลาดน้อย",
+    description: "Studio & Event Space in Bangkok's Old Town. 360° rooftop view — perfect for MV shooting, pre-wedding, and parties.",
+    url: "https://secret-rooftop-site.vercel.app",
+    telephone: "+669-000-0000",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Soi Vanich 2, Charoen Krung Road",
+      addressLocality: "Bangkok",
+      addressRegion: "Samphanthawong",
+      postalCode: "10100",
+      addressCountry: "TH",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 13.7385,
+      longitude: 100.5117,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      opens: "09:00",
+      closes: "21:00",
+    },
+    priceRange: "฿฿",
+    image: "https://secret-rooftop-site.vercel.app/images/hero/hero.jpg",
+    sameAs: ["https://fastwork.co/user/brightauk/studio-rental-10056485"],
+  };
+
   return (
     <html lang="th" className={`${prompt.variable} h-full antialiased`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-white text-charcoal font-sans">{children}</body>
     </html>
   );
