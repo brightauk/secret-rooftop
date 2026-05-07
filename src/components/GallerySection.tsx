@@ -36,9 +36,12 @@ const images: { src: string; alt: string; category: Category }[] = [
   { src: "/images/gallery/office/02.jpg", alt: "Office space 2", category: "office" },
 ];
 
+const PREVIEW_COUNT = 6;
+
 export default function GallerySection() {
   const { t } = useLocale();
   const [active, setActive] = useState<Category>("all");
+  const [expanded, setExpanded] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -54,6 +57,8 @@ export default function GallerySection() {
   }, []);
 
   const filtered = active === "all" ? images : images.filter((i) => i.category === active);
+  const displayed = expanded ? filtered : filtered.slice(0, PREVIEW_COUNT);
+  const hasMore = filtered.length > PREVIEW_COUNT;
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -76,7 +81,7 @@ export default function GallerySection() {
     <section id="gallery" ref={sectionRef} className="py-24 md:py-32 bg-off-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <p className="text-xs tracking-[0.2em] uppercase text-terra mb-3 font-medium">
             {t(translations.gallery.tag)}
           </p>
@@ -89,11 +94,11 @@ export default function GallerySection() {
         </div>
 
         {/* Filter pills */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
           {categories.map((cat) => (
             <button
               key={cat.key}
-              onClick={() => setActive(cat.key)}
+              onClick={() => { setActive(cat.key); setExpanded(false); }}
               className={`px-5 py-2 rounded-full text-sm transition-all ${
                 active === cat.key
                   ? "bg-charcoal text-white"
@@ -105,37 +110,63 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Compact grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
-          {filtered.map((img, index) => (
+        {/* Featured grid — first image large, rest small (Airbnb style) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+          {displayed.map((img, index) => {
+            // First image spans 2 cols + 2 rows on sm+
+            const isHero = index === 0 && !expanded;
+            return (
+              <div
+                key={img.src}
+                className={`relative cursor-pointer group overflow-hidden rounded-xl ${
+                  isHero ? "col-span-2 row-span-2 aspect-square sm:aspect-auto" : "aspect-square"
+                } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                style={{
+                  transitionProperty: "opacity, transform",
+                  transitionDuration: "400ms",
+                  transitionDelay: isVisible ? `${Math.min(index * 40, 300)}ms` : "0ms",
+                }}
+                onClick={() => openLightbox(index)}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes={isHero ? "(max-width: 640px) 100vw, 50vw" : "(max-width: 640px) 50vw, 25vw"}
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
+              </div>
+            );
+          })}
+
+          {/* Show more overlay on the 6th image */}
+          {hasMore && !expanded && (
             <div
-              key={img.src}
-              className={`relative aspect-square cursor-pointer group overflow-hidden rounded-lg ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{
-                transitionProperty: "opacity, transform",
-                transitionDuration: "400ms",
-                transitionDelay: isVisible ? `${Math.min(index * 30, 300)}ms` : "0ms",
-              }}
-              onClick={() => openLightbox(index)}
+              className="relative aspect-square cursor-pointer group overflow-hidden rounded-xl bg-charcoal/80 flex items-center justify-center"
+              onClick={() => setExpanded(true)}
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg className="w-8 h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                </svg>
+              <div className="text-center text-white">
+                <span className="text-3xl font-light">+{filtered.length - PREVIEW_COUNT}</span>
+                <p className="text-xs mt-1 text-white/60 font-light">
+                  {t({ th: "ดูทั้งหมด", en: "View all" })}
+                </p>
               </div>
             </div>
-          ))}
+          )}
         </div>
+
+        {/* Collapse button when expanded */}
+        {expanded && hasMore && (
+          <div className="text-center mt-6">
+            <button
+              onClick={() => { setExpanded(false); sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+              className="px-6 py-2.5 rounded-full text-sm text-gray-400 hover:text-charcoal border border-gray-200 hover:border-gray-300 transition-all"
+            >
+              {t({ th: "แสดงน้อยลง", en: "Show less" })}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Lightbox */}
@@ -144,7 +175,6 @@ export default function GallerySection() {
           className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center"
           onClick={() => setLightbox(null)}
         >
-          {/* Close */}
           <button
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10"
             onClick={() => setLightbox(null)}
@@ -154,9 +184,8 @@ export default function GallerySection() {
             </svg>
           </button>
 
-          {/* Prev */}
           <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10"
             onClick={(e) => { e.stopPropagation(); prevImage(); }}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +193,6 @@ export default function GallerySection() {
             </svg>
           </button>
 
-          {/* Image */}
           <div className="relative max-w-4xl w-full mx-16" onClick={(e) => e.stopPropagation()}>
             <Image
               src={lightbox}
@@ -175,9 +203,8 @@ export default function GallerySection() {
             />
           </div>
 
-          {/* Next */}
           <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10"
             onClick={(e) => { e.stopPropagation(); nextImage(); }}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +212,6 @@ export default function GallerySection() {
             </svg>
           </button>
 
-          {/* Counter */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-sm">
             {lightboxIndex + 1} / {filtered.length}
           </div>

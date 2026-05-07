@@ -62,29 +62,31 @@ export default function Navbar() {
             {/* Language toggle switch */}
             <button
               onClick={() => setLocale(locale === "th" ? "en" : "th")}
-              className={`relative h-8 w-[72px] rounded-full transition-all duration-300 flex items-center ${
+              className={`relative h-8 w-16 rounded-full transition-all duration-300 flex items-center p-1 ${
                 scrolled
-                  ? "bg-gray-100"
-                  : "bg-white/15"
+                  ? "bg-gray-100 hover:bg-gray-200"
+                  : "bg-white/10 hover:bg-white/20"
               }`}
               title={locale === "th" ? "Switch to English" : "เปลี่ยนเป็นภาษาไทย"}
+              aria-label={locale === "th" ? "Switch to English" : "เปลี่ยนเป็นภาษาไทย"}
             >
-              {/* Slide indicator */}
+              {/* Sliding pill */}
               <span
-                className={`absolute top-1 w-[30px] h-[24px] rounded-full transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                  scrolled ? "bg-white shadow-sm" : "bg-white/90 shadow-sm"
-                } ${locale === "th" ? "left-1" : "left-[37px]"}`}
+                className={`absolute top-1 h-6 w-6 rounded-full transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                  scrolled ? "bg-white shadow-sm" : "bg-white shadow-sm"
+                } ${locale === "th" ? "left-1" : "left-[34px]"}`}
               />
-              {/* Labels */}
-              <span className={`relative z-10 w-1/2 text-center text-[11px] font-semibold transition-colors duration-300 ${
+              {/* TH */}
+              <span className={`relative z-10 w-1/2 text-center text-[10px] font-bold tracking-wide transition-colors duration-200 ${
                 locale === "th"
-                  ? (scrolled ? "text-charcoal" : "text-charcoal")
-                  : (scrolled ? "text-gray-400" : "text-white/40")
+                  ? "text-charcoal"
+                  : (scrolled ? "text-gray-300" : "text-white/30")
               }`}>TH</span>
-              <span className={`relative z-10 w-1/2 text-center text-[11px] font-semibold transition-colors duration-300 ${
+              {/* EN */}
+              <span className={`relative z-10 w-1/2 text-center text-[10px] font-bold tracking-wide transition-colors duration-200 ${
                 locale === "en"
-                  ? (scrolled ? "text-charcoal" : "text-charcoal")
-                  : (scrolled ? "text-gray-400" : "text-white/40")
+                  ? "text-charcoal"
+                  : (scrolled ? "text-gray-300" : "text-white/30")
               }`}>EN</span>
             </button>
 
