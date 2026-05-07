@@ -4,10 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
 
+const LAT = 13.7385;
+const LNG = 100.5117;
+const PLACE_ID = "ChIJiy2QyNHc4jAR6EvWH5Y3MEs"; // Google Business Profile Place ID
+const MAPS_LINK = `https://maps.app.goo.gl/mrAeDAYrVjZdUHzM9`;
+
 const parkingSpots = [
-  { name: "River City Bangkok", distance: "~10 min walk", mapsUrl: "https://maps.google.com/?q=River+City+Bangkok" },
-  { name: "Expressway Parking", distance: "~5 min walk", mapsUrl: "https://maps.google.com/?q=13.7385,100.5117" },
-  { name: "Charoen Krung Road", distance: "Nearest", mapsUrl: "https://maps.google.com/?q=13.738,100.512" },
+  { name: "River City Bangkok", distance: "~10 min walk", mapsUrl: "https://maps.google.com/?q=River+City+Bangkok+Parking&ftid=0x30e299029c6f2e3d:0xa4c3b5e82e63c0e7" },
+  { name: "Expressway Parking", distance: "~5 min walk", mapsUrl: `https://maps.google.com/?q=13.7390,100.5120` },
+  { name: "Charoen Krung Road", distance: "Nearest", mapsUrl: `https://maps.google.com/?q=13.7380,100.5115` },
 ];
 
 export default function LocationSection() {
@@ -46,7 +51,7 @@ export default function LocationSection() {
         }`}>
           <div className="relative">
             <iframe
-              src="https://maps.google.com/maps?q=Secret+Rooftop+Talad+Noi&t=&z=17&ie=UTF8&iwloc=&output=embed"
+              src={`https://maps.google.com/maps?q=${LAT},${LNG}&z=17&ie=UTF8&iwloc=&output=embed`}
               width="100%"
               height="360"
               style={{ border: 0 }}
@@ -57,7 +62,7 @@ export default function LocationSection() {
               title="Secret Rooftop Location"
             />
             <a
-              href="https://maps.app.goo.gl/mrAeDAYrVjZdUHzM9"
+              href={MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="absolute bottom-3 right-3 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-lg text-xs text-terra hover:text-terra-dark transition-colors font-medium shadow-sm border border-gray-100"
