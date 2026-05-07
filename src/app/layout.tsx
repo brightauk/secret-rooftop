@@ -75,8 +75,8 @@ export default function RootLayout({
         },
         geo: {
           "@type": "GeoCoordinates",
-          latitude: 13.7385,
-          longitude: 100.5117,
+          latitude: 13.733322,
+          longitude: 100.5122616,
         },
         priceRange: "฿฿",
         image: "https://secret-rooftop-site.vercel.app/images/hero/hero.jpg",

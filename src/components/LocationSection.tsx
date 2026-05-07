@@ -4,10 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
 
-const LAT = 13.7385;
-const LNG = 100.5117;
-const PLACE_ID = "ChIJiy2QyNHc4jAR6EvWH5Y3MEs"; // Google Business Profile Place ID
-const MAPS_LINK = `https://maps.app.goo.gl/mrAeDAYrVjZdUHzM9`;
+const LAT = 13.733322;
+const LNG = 100.5122616;
+const MAPS_LINK = "https://maps.app.goo.gl/vMiprywijbgPnuwu6";
 
 const parkingSpots = [
   { name: "River City Bangkok", distance: "~10 min walk", mapsUrl: "https://maps.google.com/?q=River+City+Bangkok+Parking&ftid=0x30e299029c6f2e3d:0xa4c3b5e82e63c0e7" },
@@ -51,7 +50,7 @@ export default function LocationSection() {
         }`}>
           <div className="relative">
             <iframe
-              src={`https://maps.google.com/maps?q=${LAT},${LNG}&z=17&ie=UTF8&iwloc=&output=embed`}
+              src={`https://maps.google.com/maps?q=${LAT},${LNG}&z=17&ie=UTF8&iwloc=&output=embed&cid=0x801fff5d798cb793:0x11230098ebae859d`}
               width="100%"
               height="360"
               style={{ border: 0 }}
