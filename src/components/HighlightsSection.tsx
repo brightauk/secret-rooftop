@@ -21,7 +21,7 @@ export default function HighlightsSection() {
   const items = translations.highlights.items;
 
   return (
-    <section id="highlights" ref={sectionRef} className="py-24 md:py-32 bg-white">
+    <section id="highlights" ref={sectionRef} className="py-16 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header - centered, minimal */}
         <div className="text-center mb-16">

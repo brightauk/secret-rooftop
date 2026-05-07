@@ -25,7 +25,7 @@ export default function LocationSection() {
   }, []);
 
   return (
-    <section id="location" ref={sectionRef} className="py-24 md:py-32 bg-white">
+    <section id="location" ref={sectionRef} className="py-16 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -83,7 +83,7 @@ export default function LocationSection() {
               <div>
                 <h4 className="font-medium text-charcoal text-sm">{t({ th: "ที่อยู่", en: "Address" })}</h4>
                 <p className="text-gray-400 text-xs mt-1 leading-relaxed font-light">
-                  {t({ th: "ซอยวานิช 2 ถ.เจริญกรุง แขวงตลาดน้อย เขตสัมพันธวงศ์ กรุงเทพฯ 10100", en: "Soi Vanich 2, Charoen Krung Rd, Talad Noi, Samphanthawong, Bangkok 10100" })}
+                  {t({ th: "ซอยเจ้าสัวสอนจ้า ใกล้ร้าน Mother Roaster ตลาดน้อย กรุงเทพฯ", en: "Soi Chao Sua Son Ja, Near Mother Roaster, Talad Noi, Bangkok" })}
                 </p>
               </div>
             </div>

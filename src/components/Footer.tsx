@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="bg-charcoal text-white">
       {/* CTA bar */}
       <div className="border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-6 sm:px-8 py-16 text-center">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 py-10 text-center">
           <h2 className="text-2xl sm:text-3xl font-semibold mb-3 tracking-tight">
             {t(translations.footer.ctaTitle)}
           </h2>

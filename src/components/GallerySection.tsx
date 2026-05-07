@@ -78,7 +78,7 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" ref={sectionRef} className="py-24 md:py-32 bg-off-white">
+    <section id="gallery" ref={sectionRef} className="py-16 md:py-20 bg-off-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <div className="text-center mb-12">

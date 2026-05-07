@@ -149,7 +149,7 @@ export default function PricingSection() {
   };
 
   return (
-    <section id="pricing" ref={sectionRef} className="py-24 md:py-32 bg-off-white overflow-hidden">
+    <section id="pricing" ref={sectionRef} className="py-16 md:py-20 bg-off-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <div className="text-center mb-16">
