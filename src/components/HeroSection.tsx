@@ -32,7 +32,7 @@ export default function HeroSection() {
             {t(translations.hero.badge)}
           </p>
 
-          <h1 className="animate-delay-1 text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] mb-5 tracking-tight">
+          <h1 className="animate-delay-1 text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.2] mb-5 tracking-tight">
             {t(translations.hero.title)}
             <br />
             <span className="text-gradient-terra italic">{t(translations.hero.titleLine2)}</span>
