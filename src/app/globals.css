@@ -196,7 +196,77 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
 }
 
+/* Noise/grain texture overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+}
+
+/* Smooth page load */
+@keyframes pageLoad {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+body { animation: pageLoad 0.4s ease-out; }
+
+/* Cursor glow follow (premium feel) */
+.cursor-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(circle, rgba(184, 115, 51, 0.06) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease-out, top 0.3s ease-out;
+}
+
+/* Section wave divider */
+.wave-divider {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+}
+.wave-divider::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: repeat-x;
+  background-size: 50% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0 20 Q300 0 600 20 Q900 40 1200 20 L1200 40 L0 40Z' fill='%23F8F7F4'/%3E%3C/svg%3E");
+}
+
+/* Magnetic button effect base */
+.magnetic {
+  transition: transform 0.2s ease-out;
+}
+
+/* Text shimmer animation */
+@keyframes textShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.text-shimmer {
+  background-size: 200% auto;
+  animation: textShimmer 3s linear infinite;
+}
+
+/* Parallax layer */
+.parallax-slow { will-change: transform; }
+
 /* Mobile tap target */
 @media (max-width: 640px) {
   .tap-target { min-height: 48px; min-width: 48px; }
+  .grain::after { display: none; }
+  .cursor-glow { display: none; }
 }

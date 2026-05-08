@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
+import {
+  staggerContainer, fadeUp, sectionHeader, sectionTag,
+  sectionTitle, sectionDivider, sectionSubtitle, mapReveal,
+} from "../lib/animations";
 
 const LAT = 13.733322;
 const LNG = 100.5122616;
@@ -17,37 +22,37 @@ const parkingSpots = [
 export default function LocationSection() {
   const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
     <section id="location" ref={sectionRef} className="py-16 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <p className="text-xs tracking-[0.2em] uppercase text-terra mb-3 font-medium">
+        <motion.div
+          variants={sectionHeader}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-12"
+        >
+          <motion.p variants={sectionTag} className="text-xs tracking-[0.2em] uppercase text-terra mb-3 font-medium">
             {t(translations.location.tag)}
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-semibold text-charcoal mb-4 tracking-tight">
+          </motion.p>
+          <motion.h2 variants={sectionTitle} className="text-3xl sm:text-4xl font-semibold text-charcoal mb-4">
             {t(translations.location.title)}
-          </h2>
-          <p className="text-gray-400 text-base max-w-md mx-auto font-light">
+          </motion.h2>
+          <motion.div variants={sectionDivider} className="section-divider mb-4 origin-center" />
+          <motion.p variants={sectionSubtitle} className="text-gray-400 text-base max-w-md mx-auto font-light">
             {t(translations.location.subtitle)}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* Full width map */}
-        <div className={`rounded-2xl overflow-hidden border border-gray-100 transition-all duration-500 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}>
+        {/* Map with animated reveal */}
+        <motion.div
+          variants={mapReveal}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="rounded-2xl overflow-hidden border border-gray-100 shadow-soft-lg"
+        >
           <div className="relative">
             <iframe
               src={`https://maps.google.com/maps?q=${LAT},${LNG}&z=17&ie=UTF8&iwloc=&output=embed&cid=0x801fff5d798cb793:0x11230098ebae859d`}
@@ -60,23 +65,28 @@ export default function LocationSection() {
               className="w-full"
               title="Secret Rooftop Location"
             />
-            <a
+            <motion.a
               href={MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="absolute bottom-3 right-3 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-lg text-xs text-terra hover:text-terra-dark transition-colors font-medium shadow-sm border border-gray-100"
             >
               {t(translations.location.openMaps)}
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Info cards row below map */}
-        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 transition-all duration-500 delay-100 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}>
+        {/* Info cards with stagger */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"
+        >
           {/* Address */}
-          <div className="p-5 rounded-2xl bg-off-white">
+          <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft">
             <div className="flex items-start gap-3">
               <span className="w-8 h-8 rounded-full bg-terra/10 flex items-center justify-center flex-shrink-0">
                 <svg className="w-4 h-4 text-terra" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,10 +101,10 @@ export default function LocationSection() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* How to get here */}
-          <div className="p-5 rounded-2xl bg-off-white">
+          <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft">
             <h4 className="font-medium text-charcoal text-sm mb-3">{t(translations.location.getHere)}</h4>
             <div className="space-y-2">
               {translations.location.directions.map((dir, i) => (
@@ -107,10 +117,10 @@ export default function LocationSection() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Parking */}
-          <div className="p-5 rounded-2xl bg-off-white sm:col-span-2 lg:col-span-1">
+          <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white sm:col-span-2 lg:col-span-1 transition-shadow hover:shadow-soft">
             <h4 className="font-medium text-charcoal text-sm mb-3">{t(translations.location.parking)}</h4>
             <div className="space-y-2">
               {parkingSpots.map((spot) => (
@@ -125,8 +135,8 @@ export default function LocationSection() {
                 </a>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

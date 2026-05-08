@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback } from "react";
+import { motion, useInView } from "framer-motion";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
+import {
+  sectionHeader, sectionTag, sectionTitle, sectionDivider, sectionSubtitle,
+} from "../lib/animations";
 
 interface Package {
   name: { th: string; en: string };
@@ -31,7 +35,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
         pkg.highlight
           ? "bg-charcoal-deep text-white shadow-glow ring-1 ring-terra/20"
           : "bg-white border border-gray-100 shadow-card"
-      } ${isActive ? "scale-100 opacity-100" : "scale-[0.92] opacity-50"}`}
+      }`}
     >
       {pkg.badge && (
         <span className={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-5 py-1.5 text-[10px] font-semibold tracking-wider uppercase rounded-full whitespace-nowrap ${
@@ -43,7 +47,6 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
         </span>
       )}
 
-      {/* Popular badge shimmer effect */}
       {pkg.highlight && (
         <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl bg-gradient-to-r from-terra via-amber to-terra" />
       )}
@@ -93,8 +96,10 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
         ))}
       </ul>
 
-      <a
+      <motion.a
         href="#contact"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
         className={`block w-full text-center py-4 rounded-full text-sm font-semibold transition-all duration-300 btn-glow tap-target ${
           pkg.highlight
             ? "bg-gradient-to-r from-terra to-amber text-white hover:shadow-lg"
@@ -102,7 +107,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
         }`}
       >
         {t(translations.pricing[pkg.ctaKey])}
-      </a>
+      </motion.a>
 
       <a
         href="https://fastwork.co/user/brightauk/studio-rental-10056485"
@@ -121,35 +126,26 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
 export default function PricingSection() {
   const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const [activeIndex, setActiveIndex] = useState(2);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-  const isDragging = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const goTo = useCallback((index: number) => {
     setActiveIndex(Math.max(0, Math.min(allPackages.length - 1, index)));
   }, []);
 
+  // Swipe handlers
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const isDragging = useRef(false);
+
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     isDragging.current = true;
   };
-
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging.current) return;
     touchEndX.current = e.touches[0].clientX;
   };
-
   const handleTouchEnd = () => {
     if (!isDragging.current) return;
     isDragging.current = false;
@@ -163,23 +159,28 @@ export default function PricingSection() {
   return (
     <section id="pricing" ref={sectionRef} className="py-20 md:py-28 bg-off-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
+        <motion.div
+          variants={sectionHeader}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="text-center mb-16"
+        >
+          <motion.p variants={sectionTag} className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
             {t(translations.pricing.tag)}
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-4 tracking-tight">
+          </motion.p>
+          <motion.h2 variants={sectionTitle} className="text-3xl sm:text-4xl md:text-5xl font-semibold text-charcoal mb-4">
             {t(translations.pricing.title)}
-          </h2>
-          <div className="section-divider mb-4" />
-          <p className="text-gray-400 text-base max-w-md mx-auto font-light">
+          </motion.h2>
+          <motion.div variants={sectionDivider} className="section-divider mb-4 origin-center" />
+          <motion.p variants={sectionSubtitle} className="text-gray-400 text-base max-w-md mx-auto font-light">
             {t(translations.pricing.subtitle)}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* Carousel */}
-        <div
-          className={`relative transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.3 }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -196,70 +197,77 @@ export default function PricingSection() {
                     const zIndex = 10 - Math.abs(offset);
 
                     return (
-                      <div
+                      <motion.div
                         key={index}
-                        className="absolute top-0 left-1/2 w-[320px] cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                        style={{
-                          transform: `translateX(${translateX - 160}px) ${isCenter && pkg.highlight ? 'scale(1.03)' : ''}`,
+                        className="absolute top-0 left-1/2 w-[320px] cursor-pointer"
+                        animate={{
+                          x: translateX - 160,
+                          scale: isCenter && pkg.highlight ? 1.03 : isCenter ? 1 : 0.92,
+                          opacity: Math.abs(offset) > 2 ? 0 : isCenter ? 1 : 0.5,
                           zIndex,
-                          opacity: Math.abs(offset) > 2 ? 0 : 1,
-                          pointerEvents: Math.abs(offset) <= 2 ? "auto" : "none",
                         }}
+                        transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
                         onClick={() => goTo(index)}
                       >
                         <PackageCard pkg={pkg} t={t} isActive={isCenter} />
-                      </div>
+                      </motion.div>
                     );
                   })}
                 </div>
 
-                {/* Nav arrows */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => goTo(activeIndex - 1)}
-                  className={`absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center transition-all duration-300 z-20 hover:bg-white hover:shadow-lg hover:scale-110 ${
+                  className={`absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center z-20 ${
                     activeIndex === 0 ? "opacity-0 pointer-events-none" : ""
                   }`}
                 >
                   <svg className="w-5 h-5 text-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => goTo(activeIndex + 1)}
-                  className={`absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center transition-all duration-300 z-20 hover:bg-white hover:shadow-lg hover:scale-110 ${
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md flex items-center justify-center z-20 ${
                     activeIndex === allPackages.length - 1 ? "opacity-0 pointer-events-none" : ""
                   }`}
                 >
                   <svg className="w-5 h-5 text-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
 
-          {/* Mobile swipe carousel */}
+          {/* Mobile swipe */}
           <div className="md:hidden">
             <div className="relative overflow-hidden">
-              <div
-                className="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+              <motion.div
+                className="flex"
+                animate={{ x: `-${activeIndex * 100}%` }}
+                transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
               >
                 {allPackages.map((pkg, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-4">
                     <PackageCard pkg={pkg} t={t} isActive={true} />
                   </div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
 
           {/* Dots */}
           <div className="flex justify-center items-center gap-2 mt-10">
             {allPackages.map((pkg, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => goTo(index)}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
                 className={`transition-all duration-500 rounded-full ${
                   index === activeIndex
                     ? "bg-terra w-8 h-3"
@@ -270,10 +278,10 @@ export default function PricingSection() {
             ))}
           </div>
 
-          <p className="text-center mt-3 text-sm text-gray-400 font-light transition-all duration-500">
+          <p className="text-center mt-3 text-sm text-gray-400 font-light">
             {t(allPackages[activeIndex].name)} · {t(allPackages[activeIndex].duration)}
           </p>
-        </div>
+        </motion.div>
 
         <p className="text-center mt-12 text-gray-300 text-xs font-light">
           {t(translations.pricing.note)}

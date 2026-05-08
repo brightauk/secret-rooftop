@@ -112,15 +112,60 @@ export default function RootLayout({
     ],
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "เช่าสตูดิโอถ่ายภาพที่ Secret Rooftop ราคาเท่าไหร่?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "เริ่มต้นที่ 1,500 บาท/ชั่วโมง สำหรับถ่ายภาพ และ 2,000 บาท/ชั่วโมง สำหรับถ่ายวีดีโอพร้อมทีม production หรือเช่าครึ่งวัน 5,000 บาท / เต็มวัน 8,000 บาท",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "How much does it cost to rent the studio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starting from 1,500 THB/hour for photoshoot, 2,000 THB/hour for video production, 5,000 THB for half day, and 8,000 THB for full day.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Secret Rooftop อยู่ที่ไหน?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ตั้งอยู่ในซอยเจ้าสัวสอนจ้า ใกล้ร้าน Mother Roaster ย่านตลาดน้อย กรุงเทพฯ — ใจกลางย่านเก่า วิวแม่น้ำเจ้าพระยา 360°",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "เหมาะสำหรับงานอะไรบ้าง?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "เหมาะสำหรับถ่าย MV, ถ่ายพรีเวดดิ้ง, ถ่ายแฟชั่น, จัดปาร์ตี้ส่วนตัว, ทำคอนเทนต์, ถ่ายทำ, และอีเวนต์เล็กๆ",
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="th" className={`${prompt.variable} h-full antialiased`}>
       <head>
+        <link rel="preconnect" href="https://maps.google.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-charcoal font-sans">{children}</body>
+      <body className="min-h-full flex flex-col bg-white text-charcoal font-sans grain">{children}</body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
     </html>
   );
