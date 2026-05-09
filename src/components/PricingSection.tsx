@@ -243,64 +243,19 @@ export default function PricingSection() {
             </div>
           </div>
 
-          {/* Mobile swipe */}
-          <div className="md:hidden">
-            {/* Starting price banner */}
+          {/* Mobile: peek-to-next carousel — shows edge of next card as natural swipe cue */}
+          <div className="md:hidden -mx-6 px-6 overflow-hidden">
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="text-center mb-6"
+              className="flex gap-4"
+              animate={{ x: `calc(-${activeIndex * 100}% - ${activeIndex * 16}px)` }}
+              transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
             >
-              <span className="inline-flex items-center gap-2 bg-terra/10 text-terra px-5 py-2.5 rounded-full text-sm font-medium">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-                {t({ th: "เริ่มต้นเพียง 1,500฿/ชม. ← Swipe ดูแพ็คเกจ", en: "Starting from 1,500 THB/hr ← Swipe to see packages" })}
-              </span>
+              {allPackages.map((pkg, index) => (
+                <div key={index} className="w-[calc(100%-24px)] flex-shrink-0 pt-5">
+                  <PackageCard pkg={pkg} t={t} isActive={true} />
+                </div>
+              ))}
             </motion.div>
-
-            <div className="relative">
-              <motion.div
-                className="flex"
-                animate={{ x: `-${activeIndex * 100}%` }}
-                transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-              >
-                {allPackages.map((pkg, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-4 pt-5">
-                    <PackageCard pkg={pkg} t={t} isActive={true} />
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* Swipe arrow indicators */}
-              {activeIndex > 0 && (
-                <div className="absolute left-1 top-1/2 -translate-y-1/2 z-10">
-                  <motion.div
-                    initial={{ opacity: 0, x: 5 }}
-                    animate={{ opacity: 0.6, x: 0 }}
-                    className="w-8 h-8 rounded-full bg-white/80 shadow flex items-center justify-center"
-                  >
-                    <svg className="w-4 h-4 text-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </motion.div>
-                </div>
-              )}
-              {activeIndex < allPackages.length - 1 && (
-                <div className="absolute right-1 top-1/2 -translate-y-1/2 z-10">
-                  <motion.div
-                    initial={{ opacity: 0, x: -5 }}
-                    animate={{ opacity: 0.6, x: 0 }}
-                    className="w-8 h-8 rounded-full bg-white/80 shadow flex items-center justify-center"
-                  >
-                    <svg className="w-4 h-4 text-charcoal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.div>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Dots */}
