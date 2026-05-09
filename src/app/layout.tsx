@@ -164,6 +164,47 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AggregateRating",
+              "itemReviewed": { "@id": "https://secret-rooftop-site.vercel.app/#business" },
+              "ratingValue": "5.0",
+              "bestRating": "5",
+              "worstRating": "1",
+              "ratingCount": "50",
+              "reviewCount": "12",
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://secret-rooftop-site.vercel.app/#business" },
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Piya" },
+              "reviewBody": "Incredible view! Every angle is photogenic. Golden hour was absolutely stunning. Highly recommended!",
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://secret-rooftop-site.vercel.app/#business" },
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Nittaya" },
+              "reviewBody": "Hosted my birthday party here. Amazing atmosphere, the owner is super friendly and helpful. Definitely coming back!",
+            }),
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-white text-charcoal font-sans grain">{children}</body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />

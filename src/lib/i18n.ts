@@ -216,6 +216,36 @@ export const translations = {
       { q: { th: "มาดูสถานที่ก่อนจองได้ไหม?", en: "Can we visit before booking?" }, a: { th: "ได้ครับ! ดูได้ไม่เกิน 15 นาที ติดต่อนัดผ่าน LINE ได้เลย", en: "Absolutely! Site visits up to 15 minutes. Contact us via LINE to schedule." } },
     ],
   },
+  // Testimonials
+  testimonials: {
+    tag: { th: "เสียงจากลูกค้า", en: "Client Reviews" },
+    title: { th: "ลูกค้าพูดถึงเรา", en: "What Our Clients Say" },
+    subtitle: {
+      th: "ประสบการณ์จริงจากคนที่มาใช้พื้นที่ของเรา",
+      en: "Real experiences from people who've used our space",
+    },
+    aggregate: { th: "⭐ 5.0 จากคะแนนเฉลี่ย · 50+ การจองสำเร็จ", en: "⭐ 5.0 average rating · 50+ successful bookings" },
+    items: [
+      {
+        stars: 5,
+        quote: { th: "วิวสวยมาก ถ่ายรูปออกมาเป๊ะทุกมุม โกลเดนอาวเวอร์งดงามมากๆ แนะนำเลยค่ะ!", en: "Incredible view! Every angle is photogenic. Golden hour was absolutely stunning. Highly recommended!" },
+        author: { th: "ปิยะ", en: "Piya" },
+        role: { th: "ช่างภาพอิสระ", en: "Freelance Photographer" },
+      },
+      {
+        stars: 5,
+        quote: { th: "จัดปาร์ตี้วันเกิดที่นี่ บรรยากาศดีมาก เจ้าของน่ารัก ดูแลดีมากค่ะ กลับมาอีกแน่นอน!", en: "Hosted my birthday party here. Amazing atmosphere, the owner is super friendly and helpful. Definitely coming back!" },
+        author: { th: "นิตยา", en: "Nittaya" },
+        role: { th: "จัดอีเวนต์", en: "Event Organizer" },
+      },
+      {
+        stars: 5,
+        quote: { th: "ถ่าย MV ที่นี่ครบจบในที่เดียว วิวแม่น้ำสวย แสงธรรมชาติเพอร์เฟกต์ ทีมงานโพสต์ว่าของถ่ายง่ายมาก", en: "Shot our entire MV here. The river view is stunning, natural light is perfect. Our DP said it was incredibly easy to shoot." },
+        author: { th: "ธนา", en: "Thana" },
+        role: { th: "ผู้กำกับ MV", en: "Music Video Director" },
+      },
+    ],
+  },
   // Footer
   footer: {
     desc: {

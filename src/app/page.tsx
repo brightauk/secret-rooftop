@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import HighlightsSection from "../components/HighlightsSection";
 import GallerySection from "../components/GallerySection";
+import TestimonialsSection from "../components/TestimonialsSection";
 import PricingSection from "../components/PricingSection";
 import LocationSection from "../components/LocationSection";
 import ContactFAQSection from "../components/ContactFAQSection";
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroSection />
         <HighlightsSection />
         <GallerySection />
+        <TestimonialsSection />
         <PricingSection />
         <LocationSection />
         <ContactFAQSection />
