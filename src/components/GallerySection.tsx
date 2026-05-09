@@ -77,14 +77,14 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" ref={sectionRef} className="py-20 md:py-28 bg-off-white relative">
+    <section id="gallery" ref={sectionRef} className="py-12 md:py-16 bg-off-white relative">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <motion.div
           variants={sectionHeader}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <motion.p variants={sectionTag} className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
             {t(translations.gallery.tag)}

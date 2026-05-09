@@ -144,6 +144,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-glow {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 .btn-glow::before {
@@ -155,8 +156,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity 0.3s;
 }
 .btn-glow:hover::before { opacity: 1; }
-.btn-glow:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
-.btn-glow:active { transform: translateY(0); }
+.btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.btn-glow:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+/* All interactive buttons feel clickable */
+button, a[role="button"] {
+  cursor: pointer;
+}
 
 /* Glass effect */
 .glass {

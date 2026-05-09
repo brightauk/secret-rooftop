@@ -16,7 +16,7 @@ export default function HighlightsSection() {
   const items = translations.highlights.items;
 
   return (
-    <section id="highlights" ref={sectionRef} className="py-20 md:py-28 bg-white relative">
+    <section id="highlights" ref={sectionRef} className="py-12 md:py-16 bg-white relative">
       {/* Subtle dot pattern background */}
       <div className="absolute inset-0 opacity-[0.015]" style={{
         backgroundImage: "radial-gradient(circle, var(--charcoal) 1px, transparent 1px)",
@@ -29,7 +29,7 @@ export default function HighlightsSection() {
           variants={sectionHeader}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
           <motion.p variants={sectionTag} className="text-xs tracking-[0.25em] uppercase text-terra mb-3 font-medium">
             {t(translations.highlights.tag)}

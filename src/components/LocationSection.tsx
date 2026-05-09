@@ -25,14 +25,14 @@ export default function LocationSection() {
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <section id="location" ref={sectionRef} className="py-16 md:py-20 bg-white">
+    <section id="location" ref={sectionRef} className="py-12 md:py-16 bg-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         {/* Header */}
         <motion.div
           variants={sectionHeader}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <motion.p variants={sectionTag} className="text-xs tracking-[0.2em] uppercase text-terra mb-3 font-medium">
             {t(translations.location.tag)}
