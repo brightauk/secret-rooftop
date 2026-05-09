@@ -152,7 +152,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="th" className={`${prompt.variable} h-full antialiased`}>
+    <html lang="th" className={`${prompt.variable} antialiased`}>
       <head>
         <link rel="preconnect" href="https://maps.google.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -206,7 +206,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-charcoal font-sans grain">{children}</body>
+      <body className="min-h-screen flex flex-col bg-white text-charcoal font-sans grain">{children}</body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
     </html>
   );
