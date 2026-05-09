@@ -243,15 +243,15 @@ export default function PricingSection() {
             </div>
           </div>
 
-          {/* Mobile: peek-to-next carousel — shows edge of next card as natural swipe cue */}
-          <div className="md:hidden -mx-6 px-6 overflow-hidden">
+          {/* Mobile: full-width card carousel */}
+          <div className="md:hidden">
             <motion.div
-              className="flex gap-4"
-              animate={{ x: `calc(-${activeIndex * 100}% - ${activeIndex * 16}px)` }}
+              className="flex"
+              animate={{ x: `-${activeIndex * 100}%` }}
               transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
             >
               {allPackages.map((pkg, index) => (
-                <div key={index} className="w-[calc(100%-24px)] flex-shrink-0 pt-5">
+                <div key={index} className="w-full flex-shrink-0 px-4 pt-5">
                   <PackageCard pkg={pkg} t={t} isActive={true} />
                 </div>
               ))}
