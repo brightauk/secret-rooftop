@@ -13,6 +13,12 @@ const LAT = 13.733322;
 const LNG = 100.5122616;
 const MAPS_LINK = "https://maps.app.goo.gl/vMiprywijbgPnuwu6";
 
+const parkingSpots = [
+  { name: "ตลาดน้อยคาร์ปาร์ค", nameEn: "Talad Noi Car Park", distance: { th: "เดิน 4 นาที", en: "4 min walk" }, mapsUrl: "https://maps.app.goo.gl/UFHJfAy7uSnStVbc8" },
+  { name: "River City Bangkok", nameEn: "River City Bangkok", distance: { th: "เดิน 8 นาที", en: "8 min walk" }, mapsUrl: "https://maps.app.goo.gl/zdTkpwugvzar8s8L7" },
+  { name: "ริมถนนเจริญกรุง", nameEn: "Charoen Krung Road", distance: { th: "เดิน 5 นาที", en: "5 min walk" }, mapsUrl: "https://maps.google.com/?q=13.7380,100.5115" },
+];
+
 export default function LocationSection() {
   const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
@@ -72,14 +78,15 @@ export default function LocationSection() {
           </div>
         </motion.div>
 
-        {/* Address card */}
+        {/* Address + Parking row */}
         <motion.div
-          variants={fadeUp}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="flex justify-center mt-6"
+          variants={fadeUp}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 max-w-3xl mx-auto"
         >
-          <motion.div whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft max-w-md w-full">
+          {/* Address */}
+          <motion.div whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft">
             <div className="flex items-start gap-3">
               <span className="w-8 h-8 rounded-full bg-terra/10 flex items-center justify-center flex-shrink-0">
                 <svg className="w-4 h-4 text-terra" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,6 +100,28 @@ export default function LocationSection() {
                   {t({ th: "ซอยเจ้าสัวสอนจ้า ใกล้ร้าน Mother Roaster ตลาดน้อย กรุงเทพฯ", en: "Soi Chao Sua Son Ja, Near Mother Roaster, Talad Noi, Bangkok" })}
                 </p>
               </div>
+            </div>
+          </motion.div>
+
+          {/* Parking */}
+          <motion.div whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft">
+            <h4 className="font-medium text-charcoal text-sm mb-3">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-5 h-5 rounded-full bg-charcoal text-white text-[9px] font-bold flex items-center justify-center">P</span>
+                {t({ th: "ที่จอดรถ", en: "Parking" })}
+              </span>
+            </h4>
+            <div className="space-y-2">
+              {parkingSpots.map((spot) => (
+                <a key={spot.name} href={spot.mapsUrl} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center justify-between group"
+                >
+                  <span className="text-xs text-charcoal font-medium group-hover:text-terra transition-colors">
+                    {t({ th: spot.name, en: spot.nameEn })}
+                  </span>
+                  <span className="text-[11px] text-gray-400">{t(spot.distance)}</span>
+                </a>
+              ))}
             </div>
           </motion.div>
         </motion.div>
