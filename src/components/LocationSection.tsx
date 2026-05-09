@@ -5,19 +5,13 @@ import { motion, useInView } from "framer-motion";
 import { useLocale } from "../lib/locale-context";
 import { translations } from "../lib/i18n";
 import {
-  staggerContainer, fadeUp, sectionHeader, sectionTag,
+  fadeUp, sectionHeader, sectionTag,
   sectionTitle, sectionDivider, sectionSubtitle, mapReveal,
 } from "../lib/animations";
 
 const LAT = 13.733322;
 const LNG = 100.5122616;
 const MAPS_LINK = "https://maps.app.goo.gl/vMiprywijbgPnuwu6";
-
-const parkingSpots = [
-  { name: "River City Bangkok", distance: "~10 min walk", mapsUrl: "https://maps.google.com/?q=River+City+Bangkok+Parking&ftid=0x30e299029c6f2e3d:0xa4c3b5e82e63c0e7" },
-  { name: "Expressway Parking", distance: "~5 min walk", mapsUrl: `https://maps.google.com/?q=13.7390,100.5120` },
-  { name: "Charoen Krung Road", distance: "Nearest", mapsUrl: `https://maps.google.com/?q=13.7380,100.5115` },
-];
 
 export default function LocationSection() {
   const { t } = useLocale();
@@ -78,15 +72,14 @@ export default function LocationSection() {
           </div>
         </motion.div>
 
-        {/* Info cards with stagger */}
+        {/* Address card */}
         <motion.div
-          variants={staggerContainer}
+          variants={fadeUp}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"
+          className="flex justify-center mt-6"
         >
-          {/* Address */}
-          <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft">
+          <motion.div whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft max-w-md w-full">
             <div className="flex items-start gap-3">
               <span className="w-8 h-8 rounded-full bg-terra/10 flex items-center justify-center flex-shrink-0">
                 <svg className="w-4 h-4 text-terra" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,40 +93,6 @@ export default function LocationSection() {
                   {t({ th: "ซอยเจ้าสัวสอนจ้า ใกล้ร้าน Mother Roaster ตลาดน้อย กรุงเทพฯ", en: "Soi Chao Sua Son Ja, Near Mother Roaster, Talad Noi, Bangkok" })}
                 </p>
               </div>
-            </div>
-          </motion.div>
-
-          {/* How to get here */}
-          <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white transition-shadow hover:shadow-soft">
-            <h4 className="font-medium text-charcoal text-sm mb-3">{t(translations.location.getHere)}</h4>
-            <div className="space-y-2">
-              {translations.location.directions.map((dir, i) => (
-                <div key={i} className="flex gap-2.5">
-                  <span className="text-sm">{dir.icon}</span>
-                  <div>
-                    <p className="text-charcoal text-xs font-medium">{t(dir.title)}</p>
-                    <p className="text-gray-400 text-[11px] leading-relaxed font-light">{t(dir.desc)}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Parking */}
-          <motion.div variants={fadeUp} whileHover={{ y: -3 }} className="p-5 rounded-2xl bg-off-white sm:col-span-2 lg:col-span-1 transition-shadow hover:shadow-soft">
-            <h4 className="font-medium text-charcoal text-sm mb-3">{t(translations.location.parking)}</h4>
-            <div className="space-y-2">
-              {parkingSpots.map((spot) => (
-                <a key={spot.name} href={spot.mapsUrl} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-between py-1.5 group"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-charcoal text-white text-[9px] font-bold flex items-center justify-center">P</span>
-                    <span className="text-xs text-charcoal font-medium group-hover:text-terra transition-colors">{spot.name}</span>
-                  </div>
-                  <span className="text-[11px] text-gray-400">{spot.distance}</span>
-                </a>
-              ))}
             </div>
           </motion.div>
         </motion.div>
