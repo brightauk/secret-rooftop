@@ -51,8 +51,10 @@
   --font-sans: var(--font-prompt);
 }
 
-* {
+html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -62,6 +64,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.7;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Prevent Thai character clipping (ย ผ ฟ ฤ ฯ) */
