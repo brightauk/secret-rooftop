@@ -20,7 +20,7 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative h-screen min-h-[700px] flex items-end overflow-x-hidden bg-charcoal-deep">
-      {/* Full-bleed hero image with parallax */}
+      {/* Full-bleed hero image + overlays with parallax */}
       <motion.div className="absolute inset-0" style={{ y: imgY }}>
         <Image
           src="/images/hero/hero.jpg"
@@ -33,23 +33,22 @@ export default function HeroSection() {
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChsdW1pAAABcAAAABRyblBAAAAAWAAAABRia0EAAAAWAAAACgAAAAAAAHMbwAAACwAADiYAGeAADymQAATacAAAnWY2lkdwAAAAAAAAAAAAAAAFlgAMekAAAAAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
         />
+        {/* Cinematic gradient overlays — inside parallax so they scroll with image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20" />
+        {/* Animated ambient glow */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            background: [
+              "radial-gradient(ellipse at 20% 80%, rgba(184,115,51,0.08) 0%, transparent 50%)",
+              "radial-gradient(ellipse at 30% 70%, rgba(184,115,51,0.12) 0%, transparent 50%)",
+              "radial-gradient(ellipse at 20% 80%, rgba(184,115,51,0.08) 0%, transparent 50%)",
+            ],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
       </motion.div>
-
-      {/* Cinematic gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20" />
-      {/* Animated ambient glow */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            "radial-gradient(ellipse at 20% 80%, rgba(184,115,51,0.08) 0%, transparent 50%)",
-            "radial-gradient(ellipse at 30% 70%, rgba(184,115,51,0.12) 0%, transparent 50%)",
-            "radial-gradient(ellipse at 20% 80%, rgba(184,115,51,0.08) 0%, transparent 50%)",
-          ],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
 
       {/* Content with scroll-linked fade */}
       <motion.div
