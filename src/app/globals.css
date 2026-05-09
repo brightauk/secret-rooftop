@@ -53,8 +53,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -64,7 +62,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.7;
+  touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent any horizontal overflow without breaking vertical scroll */
+main {
+  overflow-x: clip;
 }
 
 /* Prevent Thai character clipping (ย ผ ฟ ฤ ฯ) */

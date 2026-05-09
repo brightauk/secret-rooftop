@@ -19,7 +19,7 @@ export default function HeroSection() {
   const textY = useTransform(scrollYProgress, [0, 0.4], [0, -60]);
 
   return (
-    <section ref={sectionRef} className="relative h-screen min-h-[700px] flex items-end overflow-x-hidden bg-charcoal-deep">
+    <section ref={sectionRef} className="relative h-screen min-h-[700px] flex items-end bg-charcoal-deep">
       {/* Full-bleed hero image + overlays with parallax */}
       <motion.div className="absolute inset-0" style={{ y: imgY }}>
         <Image
