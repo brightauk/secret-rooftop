@@ -12,7 +12,7 @@ const prompt = Prompt({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://secret-rooftop-site.vercel.app"),
+  metadataBase: new URL("https://secret-rooftop.com"),
   title: "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า ตลาดน้อย | Secret Rooftop — Studio & Event Space กรุงเทพ",
   description:
     "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า วิว360° ย่านตลาดน้อย กรุงเทพ เหมาะสำหรับถ่ายMV ถ่ายพรีเวดดิ้ง ถ่ายแฟชั่น จัดอีเวนต์ จัดปาร์ตี้ เช่าพื้นที่ถ่ายทำ เริ่ม 1,500฿/ชม. | Rooftop studio rental in Bangkok Old Town — MV, pre-wedding, fashion shoot, event space from 1,500 THB/hr.",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "th_TH",
     alternateLocale: "en_US",
-    url: "https://secret-rooftop-site.vercel.app",
+    url: "https://secret-rooftop.com",
     siteName: "Secret Rooftop Talad Noi",
     images: [{ url: "/images/hero/hero.jpg", width: 1200, height: 630, alt: "Secret Rooftop — สตูดิโอถ่ายภาพ ดาดฟ้า ตลาดน้อย กรุงเทพ" }],
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     images: ["/images/hero/hero.jpg"],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://secret-rooftop-site.vercel.app" },
+  alternates: { canonical: "https://secret-rooftop.com" },
 };
 
 export default function RootLayout({
@@ -60,11 +60,11 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://secret-rooftop-site.vercel.app/#business",
+        "@id": "https://secret-rooftop.com/#business",
         name: "Secret Rooftop Talad Noi",
         alternateName: ["ดาดฟ้าลับ ตลาดน้อย", "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า กรุงเทพ", "Secret Rooftop Studio"],
         description: "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า วิว360° ย่านตลาดน้อย กรุงเทพ เหมาะสำหรับถ่ายMV ถ่ายพรีเวดดิ้ง ถ่ายแฟชั่น จัดอีเวนต์ จัดปาร์ตี้ เช่าพื้นที่ถ่ายทำ เริ่ม 1,500฿/ชม. | Rooftop studio rental in Bangkok Old Town — MV, pre-wedding, fashion shoot, event space from 1,500 THB/hr.",
-        url: "https://secret-rooftop-site.vercel.app",
+        url: "https://secret-rooftop.com",
         telephone: "+669-000-0000",
         address: {
           "@type": "PostalAddress",
@@ -80,7 +80,7 @@ export default function RootLayout({
           longitude: 100.5122616,
         },
         priceRange: "฿฿",
-        image: "https://secret-rooftop-site.vercel.app/images/hero/hero.jpg",
+        image: "https://secret-rooftop.com/images/hero/hero.jpg",
         sameAs: ["https://fastwork.co/user/brightauk/studio-rental-10056485"],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -99,14 +99,14 @@ export default function RootLayout({
       },
       {
         "@type": "WebSite",
-        "@id": "https://secret-rooftop-site.vercel.app/#website",
-        url: "https://secret-rooftop-site.vercel.app",
+        "@id": "https://secret-rooftop.com/#website",
+        url: "https://secret-rooftop.com",
         name: "Secret Rooftop Talad Noi",
         inLanguage: ["th", "en"],
         potentialAction: {
           "@type": "ReserveAction",
           name: "Book Studio",
-          target: "https://secret-rooftop-site.vercel.app/#contact",
+          target: "https://secret-rooftop.com/#contact",
         },
       },
     ],
@@ -170,7 +170,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "AggregateRating",
-              "itemReviewed": { "@id": "https://secret-rooftop-site.vercel.app/#business" },
+              "itemReviewed": { "@id": "https://secret-rooftop.com/#business" },
               "ratingValue": "5.0",
               "bestRating": "5",
               "worstRating": "1",
@@ -185,7 +185,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Review",
-              "itemReviewed": { "@id": "https://secret-rooftop-site.vercel.app/#business" },
+              "itemReviewed": { "@id": "https://secret-rooftop.com/#business" },
               "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
               "author": { "@type": "Person", "name": "Piya" },
               "reviewBody": "Incredible view! Every angle is photogenic. Golden hour was absolutely stunning. Highly recommended!",
@@ -198,7 +198,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Review",
-              "itemReviewed": { "@id": "https://secret-rooftop-site.vercel.app/#business" },
+              "itemReviewed": { "@id": "https://secret-rooftop.com/#business" },
               "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
               "author": { "@type": "Person", "name": "Nittaya" },
               "reviewBody": "Hosted my birthday party here. Amazing atmosphere, the owner is super friendly and helpful. Definitely coming back!",
