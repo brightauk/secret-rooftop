@@ -197,6 +197,31 @@ export default function GallerySection() {
             </button>
           </motion.div>
         )}
+
+        {/* Google Drive — more photos */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5 }}
+          className="text-center mt-8"
+        >
+          <a
+            href="https://drive.google.com/drive/folders/1k44ryDzGnwZUg1Atqp45f0ojVB8Qzapc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-terra hover:text-terra-dark transition-colors duration-300 group"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span className="border-b border-terra/30 group-hover:border-terra transition-colors">
+              {t({ th: "ดูรูปเพิ่มเติมใน Google Drive", en: "View more photos on Google Drive" })}
+            </span>
+            <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </motion.div>
       </div>
 
       {/* Premium Lightbox with AnimatePresence */}
