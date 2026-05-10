@@ -17,19 +17,35 @@ export const metadata: Metadata = {
   description:
     "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า วิว360° ย่านตลาดน้อย กรุงเทพ เหมาะสำหรับถ่ายMV ถ่ายพรีเวดดิ้ง ถ่ายแฟชั่น จัดอีเวนต์ จัดปาร์ตี้ เช่าพื้นที่ถ่ายทำ เริ่ม 1,500฿/ชม. | Rooftop studio rental in Bangkok Old Town — MV, pre-wedding, fashion shoot, event space from 1,500 THB/hr.",
   keywords: [
-    // Thai - high priority
+    // Thai - high priority (core)
     "เช่าสตูดิโอถ่ายภาพ", "เช่าดาดฟ้า", "เช่าสตูดิโอ", "สตูดิโอถ่ายภาพ กรุงเทพ",
     "ดาดฟ้า เช่า", "ถ่าย MV กรุงเทพ", "ถ่ายพรีเวดดิ้ง กรุงเทพ",
     "เช่าพื้นที่ถ่ายทำ", "เช่าสตูดิโอถ่ายวีดีโอ", "จัดอีเวนต์ กรุงเทพ",
     "จัดปาร์ตี้ ดาดฟ้า", "ถ่ายแฟชั่น กรุงเทพ", "สตูดิโอ ตลาดน้อย",
     "เช่าพื้นที่จัดงาน", "ดาดฟ้า ตลาดน้อย", "ถ่ายภาพ ดาดฟ้า",
     "สตูดิโอถ่ายภาพ ราคาถูก", "เช่า location ถ่ายหนัง",
+    // Thai - easy wins (low competition long-tail)
+    "เช่าสตูดิโอถ่ายภาพ ตลาดน้อย", "เช่าดาดฟ้า ตลาดน้อย",
+    "เช่าสถานที่ถ่ายทำ กรุงเทพ", "เช่าสถานที่จัดงาน กรุงเทพ",
+    "สตูดิโอถ่ายภาพ ย่านเก่า กรุงเทพ", "ถ่ายคอนเทนต์ กรุงเทพ",
+    "เช่าสตูดิโอถ่ายภาพ กลางคืน กรุงเทพ", "สถานที่ถ่าย MV กรุงเทพ",
+    "ถ่ายพรีเวดดิ้ง ดาดฟ้า กรุงเทพ", "จัดปาร์ตี้ ดาดฟ้า กรุงเทพ ที่ไหนดี",
+    "เช่าสตูดิโอ ถ่ายทิ้ง", "คอนเทนต์ครีเอเตอร์ สตูดิโอ กรุงเทพ",
+    "เช่าที่ถ่ายภาพ กรุงเทพ", "สตูดิโอ outdoor กรุงเทพ",
+    "ถ่ายรูป ดาดฟ้า กรุงเทพ", "เช่าพื้นที่ ถ่าย MV ถ่ายพรีเวดดิ้ง",
+    "ดาดฟ้า ถ่ายภาพ วิวแม่น้ำ", "สตูดิโอถ่ายภาพ สำเหร่ ตลาดน้อย",
     // English - high priority
     "rooftop studio rental bangkok", "studio space bangkok", "photoshoot location bangkok",
     "MV shooting bangkok", "pre-wedding shoot bangkok", "event space bangkok",
     "rooftop rental bangkok", "fashion shoot bangkok", "video production bangkok",
     "talad noi studio", "bangkok old town studio", "party venue bangkok",
     "studio rental near me bangkok", "affordable studio bangkok",
+    // English - easy wins (low competition)
+    "rooftop venue bangkok", "content creator space bangkok",
+    "outdoor photoshoot bangkok", "video shoot location bangkok",
+    "private party venue bangkok", "pre-wedding location bangkok",
+    "rooftop event space bangkok", "film location bangkok",
+    "talad noi rooftop", "bangkok photo studio rental cheap",
   ],
   openGraph: {
     title: "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า ตลาดน้อย | Secret Rooftop Studio Bangkok",

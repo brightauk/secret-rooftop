@@ -17,8 +17,8 @@ export const translations = {
     title: { th: "ดาดฟ้าลับ", en: "Secret Rooftop" },
     titleLine2: { th: "ตลาดน้อย", en: "Talad Noi" },
     subtitle: {
-      th: "สตูดิโอและพื้นที่อีเวนต์ในใจกลางย่านเก่ากรุงเทพ วิว 360° เหมาะสำหรับถ่าย MV ถ่ายพรีเวดดิ้ง และจัดปาร์ตี้",
-      en: "Studio & Event Space in the heart of Bangkok's Old Town. 360° view — perfect for MV, Pre-wedding, and Parties.",
+      th: "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า วิว360° ย่านตลาดน้อย เช่าสถานที่ถ่ายทำ MV พรีเวดดิ้ง แฟชั่น จัดอีเวนต์ จัดปาร์ตี้ ถ่ายคอนเทนต์ เริ่ม 1,500฿",
+      en: "Rooftop photo studio for rent in Bangkok's Old Town. 360° view — MV shooting, pre-wedding, fashion, events, content creation from 1,500 THB/hr.",
     },
     checkRates: { th: "ดูราคา", en: "Check Rates" },
     bookLine: { th: "จองผ่าน LINE", en: "Book via LINE" },
@@ -29,8 +29,8 @@ export const translations = {
     tag: { th: "เช่าสตูดิโอถ่ายภาพ", en: "Studio Rental Bangkok" },
     title: { th: "สตูดิโอถ่ายภาพ ดาดฟ้า กรุงเทพ — จุดเด่นของที่นี่", en: "Rooftop Photo Studio Bangkok — Space & Highlights" },
     subtitle: {
-      th: "เช่าดาดฟ้าถ่ายภาพ ถ่ายMV พรีเวดดิ้ง แฟชั่น จัดอีเวนต์ ย่านตลาดน้อย",
-      en: "Rooftop studio for MV, pre-wedding, fashion shoots & events in Talad Noi, Bangkok",
+      th: "เช่าดาดฟ้าถ่ายภาพ ย่านตลาดน้อย ถ่ายMV ถ่ายพรีเวดดิ้ง ถ่ายแฟชั่น ถ่ายคอนเทนต์ จัดอีเวนต์ จัดปาร์ตี้ สตูดิโอ outdoor",
+      en: "Rooftop studio rental for MV, pre-wedding, fashion, content creation & events in Talad Noi, Bangkok",
     },
     items: [
       {
@@ -88,8 +88,8 @@ export const translations = {
     tag: { th: "ภาพถ่ายสตูดิโอ", en: "Studio Photos" },
     title: { th: "แกลเลอรี — ถ่ายภาพสตูดิโอดาดฟ้า กรุงเทพ", en: "Gallery — Rooftop Studio Photography Bangkok" },
     subtitle: {
-      th: "ดาดฟ้าของเราในมุมต่างๆ — ทั้งกลางวันและกลางคืน เหมาะถ่ายพรีเวดดิ้ง ถ่ายแฟชั่น ถ่ายMV",
-      en: "Our rooftop from every angle — day and night. Perfect for pre-wedding, fashion, and MV shoots.",
+      th: "สตูดิโอถ่ายภาพดาดฟ้า กรุงเทพ — ทั้งกลางวันและกลางคืน เหมาะถ่ายพรีเวดดิ้ง ถ่ายแฟชั่น ถ่ายMV ถ่ายคอนเทนต์",
+      en: "Bangkok rooftop photo studio from every angle — day and night. Perfect for pre-wedding, fashion, MV, and content creation.",
     },
     all: { th: "ทั้งหมด", en: "All" },
     day: { th: "กลางวัน", en: "Daytime" },
@@ -101,8 +101,8 @@ export const translations = {
     tag: { th: "ราคาเช่าสตูดิโอ", en: "Studio Rental Rates" },
     title: { th: "แพ็กเกจเช่าสตูดิโอถ่ายภาพ & ราคา", en: "Photo Studio Rental Packages & Pricing" },
     subtitle: {
-      th: "เช่าสตูดิโอถ่ายภาพ เช่าดาดฟ้า ถ่ายMV พรีเวดดิ้ง เริ่ม 1,500฿/ชม.",
-      en: "Rooftop studio rental for photoshoot, MV, pre-wedding — starting 1,500 THB/hr",
+      th: "เช่าสตูดิโอถ่ายภาพ เช่าดาดฟ้า ถ่ายMV ถ่ายพรีเวดดิ้ง ถ่ายคอนเทนต์ จัดอีเวนต์ เริ่ม 1,500฿/ชม.",
+      en: "Rooftop studio rental for photoshoot, MV, pre-wedding, content creation, events — starting 1,500 THB/hr",
     },
     popular: { th: "ยอดนิยม", en: "Most Popular" },
     bookLine: { th: "จองผ่าน LINE", en: "Book via LINE" },
@@ -249,8 +249,8 @@ export const translations = {
   // Footer
   footer: {
     desc: {
-      th: "ดาดฟ้าสตูดิโอและพื้นที่จัดอีเวนต์ในย่านเก่ากรุงเทพ เหมาะสำหรับถ่าย MV ถ่ายพรีเวดดิ้ง และจัดปาร์ตี้ส่วนตัว",
-      en: "A hidden rooftop studio & event space in Bangkok's Old Town. Perfect for MV, pre-wedding, and private parties.",
+      th: "เช่าสตูดิโอถ่ายภาพ ดาดฟ้า และพื้นที่จัดอีเวนต์ในย่านเก่ากรุงเทพ เหมาะถ่าย MV ถ่ายพรีเวดดิ้ง ถ่ายคอนเทนต์ จัดปาร์ตี้ส่วนตัว",
+      en: "Rooftop studio rental & event space in Bangkok's Old Town. Perfect for MV, pre-wedding, content creation, and private parties.",
     },
     ctaTitle: { th: "พร้อมจองแล้วใช่ไหม?", en: "Ready to Book?" },
     ctaDesc: {

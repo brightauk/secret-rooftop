@@ -63,6 +63,8 @@ export const localBusinessSchema = {
       knowsAbout: [
         "เช่าสตูดิโอถ่ายภาพ", "เช่าดาดฟ้า", "ถ่าย MV", "ถ่ายพรีเวดดิ้ง",
         "ถ่ายแฟชั่น", "จัดอีเวนต์", "เช่าพื้นที่ถ่ายทำ", "Studio rental", "Rooftop studio",
+        "ถ่ายคอนเทนต์", "เช่าสถานที่ถ่ายทำ", "เช่าสถานที่จัดงาน",
+        "content creator space", "photoshoot location", "event space",
       ],
     },
     {
