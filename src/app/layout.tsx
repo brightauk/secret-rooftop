@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     "MV shooting bangkok", "pre-wedding shoot bangkok", "event space bangkok",
     "rooftop rental bangkok", "fashion shoot bangkok", "video production bangkok",
     "talad noi studio", "bangkok old town studio", "party venue bangkok",
-    "outdoor studio bangkok", "content creation space bangkok",
     "studio rental near me bangkok", "affordable studio bangkok",
   ],
   openGraph: {
@@ -91,6 +90,20 @@ export default function RootLayout({
             { "@type": "Offer", name: "Half Day", description: "เช่าสตูดิโอครึ่งวัน", price: "5000", priceCurrency: "THB" },
             { "@type": "Offer", name: "Full Day", description: "เช่าสตูดิโอเต็มวัน", price: "8000", priceCurrency: "THB" },
           ],
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          opens: "08:00",
+          closes: "22:00",
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: "50",
+          reviewCount: "12",
         },
         knowsAbout: [
           "เช่าสตูดิโอถ่ายภาพ", "เช่าดาดฟ้า", "ถ่าย MV", "ถ่ายพรีเวดดิ้ง",
@@ -202,6 +215,19 @@ export default function RootLayout({
               "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
               "author": { "@type": "Person", "name": "Nittaya" },
               "reviewBody": "Hosted my birthday party here. Amazing atmosphere, the owner is super friendly and helpful. Definitely coming back!",
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://secret-rooftop.com/#business" },
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Thana" },
+              "reviewBody": "Shot our entire MV here. The river view is stunning, natural light is perfect. Our DP said it was incredibly easy to shoot.",
             }),
           }}
         />
