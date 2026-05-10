@@ -26,11 +26,11 @@ export const translations = {
   },
   // Highlights
   highlights: {
-    tag: { th: "ทำไมต้องเรา", en: "Why Choose Us" },
-    title: { th: "จุดเด่นของที่นี่", en: "The Space & Highlights" },
+    tag: { th: "เช่าสตูดิโอถ่ายภาพ", en: "Studio Rental Bangkok" },
+    title: { th: "สตูดิโอถ่ายภาพ ดาดฟ้า กรุงเทพ — จุดเด่นของที่นี่", en: "Rooftop Photo Studio Bangkok — Space & Highlights" },
     subtitle: {
-      th: "ทุกสิ่งที่ทำให้ดาดฟ้าแห่งนี้พิเศษ",
-      en: "Everything that makes this rooftop special",
+      th: "เช่าดาดฟ้าถ่ายภาพ ถ่ายMV พรีเวดดิ้ง แฟชั่น จัดอีเวนต์ ย่านตลาดน้อย",
+      en: "Rooftop studio for MV, pre-wedding, fashion shoots & events in Talad Noi, Bangkok",
     },
     items: [
       {
@@ -85,11 +85,11 @@ export const translations = {
   },
   // Gallery
   gallery: {
-    tag: { th: "ภาพถ่าย", en: "Visual Proof" },
-    title: { th: "แกลเลอรี", en: "Gallery" },
+    tag: { th: "ภาพถ่ายสตูดิโอ", en: "Studio Photos" },
+    title: { th: "แกลเลอรี — ถ่ายภาพสตูดิโอดาดฟ้า กรุงเทพ", en: "Gallery — Rooftop Studio Photography Bangkok" },
     subtitle: {
-      th: "ดาดฟ้าของเราในมุมต่างๆ — ทั้งกลางวันและกลางคืน",
-      en: "Our rooftop from every angle — day and night",
+      th: "ดาดฟ้าของเราในมุมต่างๆ — ทั้งกลางวันและกลางคืน เหมาะถ่ายพรีเวดดิ้ง ถ่ายแฟชั่น ถ่ายMV",
+      en: "Our rooftop from every angle — day and night. Perfect for pre-wedding, fashion, and MV shoots.",
     },
     all: { th: "ทั้งหมด", en: "All" },
     day: { th: "กลางวัน", en: "Daytime" },
@@ -98,11 +98,11 @@ export const translations = {
   },
   // Pricing
   pricing: {
-    tag: { th: "ราคา", en: "Rate Card" },
-    title: { th: "แพ็กเกจ & ราคา", en: "Packages & Pricing" },
+    tag: { th: "ราคาเช่าสตูดิโอ", en: "Studio Rental Rates" },
+    title: { th: "แพ็กเกจเช่าสตูดิโอถ่ายภาพ & ราคา", en: "Photo Studio Rental Packages & Pricing" },
     subtitle: {
-      th: "เลือกแพ็กเกจที่เหมาะกับคุณ",
-      en: "Choose the package that fits your needs",
+      th: "เช่าสตูดิโอถ่ายภาพ เช่าดาดฟ้า ถ่ายMV พรีเวดดิ้ง เริ่ม 1,500฿/ชม.",
+      en: "Rooftop studio rental for photoshoot, MV, pre-wedding — starting 1,500 THB/hr",
     },
     popular: { th: "ยอดนิยม", en: "Most Popular" },
     bookLine: { th: "จองผ่าน LINE", en: "Book via LINE" },
