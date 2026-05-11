@@ -9,7 +9,8 @@ import {
 } from "../lib/animations";
 
 // Dynamic monthly promo — 20% off, auto-rotates each month
-const DISCOUNT_PCT = 20;
+const DEFAULT_DISCOUNT_PCT = 20;
+const MAX_DISCOUNT_PCT = 25;
 const TH_MONTHS = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
 const EN_MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
@@ -18,11 +19,11 @@ function getPromoMonth() {
   return { th: TH_MONTHS[now.getMonth()], en: EN_MONTHS[now.getMonth()] };
 }
 
-function applyDiscount(price: string | null): { original: string; discounted: string } | null {
+function applyDiscount(price: string | null, pct: number = DEFAULT_DISCOUNT_PCT): { original: string; discounted: string; pct: number } | null {
   if (!price) return null;
   const num = parseInt(price.replace(/,/g, ""), 10);
-  const discounted = Math.round(num * (1 - DISCOUNT_PCT / 100));
-  return { original: price, discounted: discounted.toLocaleString() };
+  const discounted = Math.round(num * (1 - pct / 100));
+  return { original: price, discounted: discounted.toLocaleString(), pct };
 }
 
 interface Package {
@@ -35,18 +36,19 @@ interface Package {
   ctaKey: "bookLine" | "getQuote";
   badge?: { th: string; en: string } | null;
   priceSuffix?: { th: string; en: string } | null;
+  discountPct?: number;
 }
 
 const allPackages: Package[] = [
   { ...translations.pricing.hourlyShoot, price: "1,500", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
   { ...translations.pricing.hourlyProduction, price: "2,000", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
   { ...translations.pricing.halfDay, price: "5,000", highlight: true, ctaKey: "bookLine", badge: translations.pricing.popular },
-  { ...translations.pricing.fullDay, price: "7,500", highlight: false, ctaKey: "bookLine" },
+  { ...translations.pricing.fullDay, price: "8,000", highlight: false, ctaKey: "bookLine", discountPct: 25 },
   { ...translations.pricing.event, price: null, highlight: false, ctaKey: "getQuote" },
 ];
 
 function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string; en: string }) => string; isActive: boolean }) {
-  const discount = applyDiscount(pkg.price);
+  const discount = applyDiscount(pkg.price, pkg.discountPct);
 
   return (
     <div
@@ -92,7 +94,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
             </div>
             <div className={`flex items-center justify-center gap-2 mt-1.5 text-xs ${pkg.highlight ? "text-white/30" : "text-gray-300"}`}>
               <span className="line-through">{discount.original} {pkg.priceSuffix ? t(pkg.priceSuffix) : "THB"}</span>
-              <span className="bg-green-500/10 text-green-600 px-2 py-0.5 rounded-full font-semibold">-{DISCOUNT_PCT}%</span>
+              <span className="bg-green-500/10 text-green-600 px-2 py-0.5 rounded-full font-semibold">-{discount?.pct ?? DEFAULT_DISCOUNT_PCT}%</span>
             </div>
           </div>
         ) : (
@@ -204,7 +206,7 @@ export default function PricingSection() {
           {/* Promo banner */}
           <motion.div variants={sectionSubtitle} className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-full px-5 py-2">
             <span className="text-green-600 font-semibold text-sm">
-              🔥 {DISCOUNT_PCT}% OFF
+              🔥 Up to {MAX_DISCOUNT_PCT}% OFF
             </span>
             <span className="text-green-700/70 text-xs">
               {locale === "th"
