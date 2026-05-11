@@ -52,7 +52,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
     <div
       className={`relative rounded-3xl p-8 sm:p-10 transition-all duration-500 ease-out h-full flex flex-col card-hover overflow-visible ${
         pkg.highlight
-          ? "bg-charcoal-deep text-white shadow-glow ring-1 ring-terra/20"
+          ? "bg-charcoal-deep text-white shadow-glow"
           : "bg-white border border-gray-100 shadow-card"
       }`}
     >
