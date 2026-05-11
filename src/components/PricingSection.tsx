@@ -8,6 +8,23 @@ import {
   sectionHeader, sectionTag, sectionTitle, sectionDivider, sectionSubtitle,
 } from "../lib/animations";
 
+// Dynamic monthly promo — 20% off, auto-rotates each month
+const DISCOUNT_PCT = 20;
+const TH_MONTHS = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+const EN_MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function getPromoMonth() {
+  const now = new Date();
+  return { th: TH_MONTHS[now.getMonth()], en: EN_MONTHS[now.getMonth()] };
+}
+
+function applyDiscount(price: string | null): { original: string; discounted: string } | null {
+  if (!price) return null;
+  const num = parseInt(price.replace(/,/g, ""), 10);
+  const discounted = Math.round(num * (1 - DISCOUNT_PCT / 100));
+  return { original: price, discounted: discounted.toLocaleString() };
+}
+
 interface Package {
   name: { th: string; en: string };
   duration: { th: string; en: string };
@@ -29,16 +46,18 @@ const allPackages: Package[] = [
 ];
 
 function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string; en: string }) => string; isActive: boolean }) {
+  const discount = applyDiscount(pkg.price);
+
   return (
     <div
-      className={`relative rounded-3xl p-8 sm:p-10 transition-all duration-500 ease-out h-full flex flex-col card-hover ${
+      className={`relative rounded-3xl p-8 sm:p-10 transition-all duration-500 ease-out h-full flex flex-col card-hover overflow-visible ${
         pkg.highlight
           ? "bg-charcoal-deep text-white shadow-glow ring-1 ring-terra/20"
           : "bg-white border border-gray-100 shadow-card"
       }`}
     >
       {pkg.badge && (
-        <span className={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-5 py-1.5 text-[10px] font-semibold tracking-wider uppercase rounded-full whitespace-nowrap ${
+        <span className={`absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 text-[10px] font-semibold tracking-wider uppercase rounded-full whitespace-nowrap z-10 ${
           pkg.highlight
             ? "bg-gradient-to-r from-terra to-amber text-white shadow-md"
             : "bg-terra/10 text-terra border border-terra/20"
@@ -61,14 +80,20 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
       </div>
 
       <div className="text-center mb-6">
-        {pkg.price ? (
-          <div className="flex items-baseline justify-center gap-1.5">
-            <span className={`text-5xl font-bold ${pkg.highlight ? "text-gradient-terra" : "text-charcoal"}`}>
-              {pkg.price}
-            </span>
-            <span className={`text-base ${pkg.highlight ? "text-white/40" : "text-gray-400"}`}>
-              {pkg.priceSuffix ? t(pkg.priceSuffix) : "THB"}
-            </span>
+        {pkg.price && discount ? (
+          <div>
+            <div className="flex items-baseline justify-center gap-1.5">
+              <span className={`text-5xl font-bold ${pkg.highlight ? "text-gradient-terra" : "text-charcoal"}`}>
+                {discount.discounted}
+              </span>
+              <span className={`text-base ${pkg.highlight ? "text-white/40" : "text-gray-400"}`}>
+                {pkg.priceSuffix ? t(pkg.priceSuffix) : "THB"}
+              </span>
+            </div>
+            <div className={`flex items-center justify-center gap-2 mt-1.5 text-xs ${pkg.highlight ? "text-white/30" : "text-gray-300"}`}>
+              <span className="line-through">{discount.original} {pkg.priceSuffix ? t(pkg.priceSuffix) : "THB"}</span>
+              <span className="bg-green-500/10 text-green-600 px-2 py-0.5 rounded-full font-semibold">-{DISCOUNT_PCT}%</span>
+            </div>
           </div>
         ) : (
           <span className={`text-3xl font-semibold ${pkg.highlight ? "text-gradient-terra" : "text-terra"}`}>
@@ -124,10 +149,11 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
 }
 
 export default function PricingSection() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const [activeIndex, setActiveIndex] = useState(2);
+  const promoMonth = getPromoMonth();
 
   const goTo = useCallback((index: number) => {
     setActiveIndex(Math.max(0, Math.min(allPackages.length - 1, index)));
@@ -157,7 +183,7 @@ export default function PricingSection() {
   };
 
   return (
-    <section id="pricing" ref={sectionRef} className="py-12 md:py-16 bg-off-white overflow-hidden">
+    <section id="pricing" ref={sectionRef} className="py-12 md:py-16 bg-off-white">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <motion.div
           variants={sectionHeader}
@@ -175,6 +201,17 @@ export default function PricingSection() {
           <motion.p variants={sectionSubtitle} className="text-gray-400 text-base max-w-md mx-auto font-light">
             {t(translations.pricing.subtitle)}
           </motion.p>
+          {/* Promo banner */}
+          <motion.div variants={sectionSubtitle} className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-full px-5 py-2">
+            <span className="text-green-600 font-semibold text-sm">
+              🔥 {DISCOUNT_PCT}% OFF
+            </span>
+            <span className="text-green-700/70 text-xs">
+              {locale === "th"
+                ? `โปรเดือน${promoMonth.th}เท่านั้น`
+                : `${promoMonth.en} promo only`}
+            </span>
+          </motion.div>
         </motion.div>
 
         <motion.div
