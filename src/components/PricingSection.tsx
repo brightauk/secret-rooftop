@@ -41,7 +41,7 @@ const allPackages: Package[] = [
   { ...translations.pricing.hourlyShoot, price: "1,500", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
   { ...translations.pricing.hourlyProduction, price: "2,000", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
   { ...translations.pricing.halfDay, price: "5,000", highlight: true, ctaKey: "bookLine", badge: translations.pricing.popular },
-  { ...translations.pricing.fullDay, price: "8,000", highlight: false, ctaKey: "bookLine" },
+  { ...translations.pricing.fullDay, price: "7,500", highlight: false, ctaKey: "bookLine" },
   { ...translations.pricing.event, price: null, highlight: false, ctaKey: "getQuote" },
 ];
 
@@ -67,7 +67,7 @@ function PackageCard({ pkg, t, isActive }: { pkg: Package; t: (obj: { th: string
       )}
 
       {pkg.highlight && (
-        <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl bg-gradient-to-r from-terra via-amber to-terra" />
+        <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-3xl bg-terra" />
       )}
 
       <div className="text-center mb-6 pt-2">
