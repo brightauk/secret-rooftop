@@ -40,8 +40,8 @@ interface Package {
 const allPackages: Package[] = [
   { ...translations.pricing.hourlyShoot, price: "1,500", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
   { ...translations.pricing.hourlyProduction, price: "2,000", highlight: false, ctaKey: "bookLine", badge: { th: "รายชั่วโมง", en: "Hourly" }, priceSuffix: { th: "THB/ชม.", en: "THB/hr" } },
-  { ...translations.pricing.halfDay, price: "5,000", highlight: false, ctaKey: "bookLine" },
-  { ...translations.pricing.fullDay, price: "8,000", highlight: true, ctaKey: "bookLine", badge: translations.pricing.popular },
+  { ...translations.pricing.halfDay, price: "5,000", highlight: true, ctaKey: "bookLine", badge: translations.pricing.popular },
+  { ...translations.pricing.fullDay, price: "8,000", highlight: false, ctaKey: "bookLine" },
   { ...translations.pricing.event, price: null, highlight: false, ctaKey: "getQuote" },
 ];
 
